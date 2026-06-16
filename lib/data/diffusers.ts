@@ -21,7 +21,7 @@ export const diffusers: Diffuser[] = [
   {
     slug: "plug-in-a815",
     model: "A815",
-    name: "The Wisp",
+    name: "The Wick",
     category: "diffuser",
     tier: "entry",
     tagline: "Scent Your Space. No Setup Required.",
@@ -136,7 +136,7 @@ export const diffusers: Diffuser[] = [
   {
     slug: "tabletop-fabric-a974",
     model: "A974",
-    name: "The Hearth",
+    name: "The Loom",
     category: "diffuser",
     tier: "entry",
     tagline: "Soft to the Touch. Warm in Every Sense.",
