@@ -223,7 +223,7 @@ export default function AboutPage() {
                     </div>
 
                     {stop.images && (
-                      <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 md:gap-4">
+                      <div className="mt-7 grid max-w-[30rem] grid-cols-3 gap-2.5">
                         {UDAIPUR.map((src, i) => (
                           <div
                             key={i}
@@ -233,7 +233,7 @@ export default function AboutPage() {
                               src={src}
                               alt="Udaipur — a palace on the lake"
                               fill
-                              sizes="(min-width: 768px) 26vw, 45vw"
+                              sizes="160px"
                               className="object-cover transition-transform duration-[1600ms] ease-[var(--ease-quint)] group-hover:scale-[1.04]"
                             />
                           </div>
