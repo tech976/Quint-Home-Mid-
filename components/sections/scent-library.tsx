@@ -31,10 +31,10 @@ export function ScentLibrary() {
           }
         />
 
-        <div className="mt-12 grid grid-cols-2 gap-px overflow-hidden bg-[color:var(--color-rule)] md:grid-cols-3 lg:grid-cols-5">
+        <div className="mt-12 grid grid-cols-2 gap-px overflow-hidden bg-[color:var(--color-rule)] md:grid-cols-4">
           {oils.map((o, i) => {
-            // Every other tile is a photographic plate; rest are colored swatches.
-            const photographic = i % 2 === 0;
+            // Every tile is a photographic plate (uses the oil's image).
+            const photographic = true;
             const tileBg = photographic
               ? { backgroundColor: "var(--color-stardust-soft)" }
               : { backgroundColor: o.swatch, color: o.textColor };
