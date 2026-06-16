@@ -21,7 +21,7 @@ export const diffusers: Diffuser[] = [
   {
     slug: "plug-in-a815",
     model: "A815",
-    name: "The Wick",
+    name: "The Pebble",
     category: "diffuser",
     tier: "entry",
     tagline: "Scent Your Space. No Setup Required.",
