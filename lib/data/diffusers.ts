@@ -17,6 +17,30 @@ import type { Diffuser } from "../types";
 //  so it carries separate gold + black image sets.
 // ============================================================
 
+// ------------------------------------------------------------
+//  Product description = the brief's "Electronic Diffusers —
+//  Product Value Proposition", used VERBATIM. Connectivity /
+//  scheduling sentences are included only on the models they
+//  actually apply to (the Pebble has no app; morning/evening
+//  scheduling is the Dual Mist / Pillar only). Per-model facts
+//  (materials, dimensions, coverage) live in `specs`.
+// ------------------------------------------------------------
+const DESC_INTRO =
+  "Waterless cold-air nebulizing electronic diffuser. Cold-air nebulization — no water, no steam, no heat. Fragrance oil atomised into microscopic particles using air pressure.";
+const DESC_DESIGN =
+  "A sculpted decor object — designed to be displayed on a shelf, not hidden. Form and finish matter as much as function.";
+const DESC_CARE =
+  "Oil refill: approximately 60–120 days depending on usage intensity. No open flame. No heat. No water. Safe around children and pets when used as directed.";
+const OP_SILENT = "Silent — no fan noise, no water gurgling.";
+const OP_APP =
+  OP_SILENT +
+  " Bluetooth enabled — app-controlled via companion app as well as physical controls.";
+const OP_APP_SCHEDULE =
+  OP_APP +
+  " Set morning and evening fragrance schedules and intensity levels once via app.";
+const descFor = (operation: string) =>
+  `${DESC_INTRO}\n\n${operation}\n\n${DESC_DESIGN}\n\n${DESC_CARE}`;
+
 export const diffusers: Diffuser[] = [
   {
     slug: "plug-in-a815",
@@ -25,8 +49,7 @@ export const diffusers: Diffuser[] = [
     category: "diffuser",
     tier: "entry",
     tagline: "Scent Your Space. No Setup Required.",
-    description:
-      "The Pebble is the effortless way to fill any room with your favourite essential oil blend. Simply plug it into any wall socket, add a few drops of oil, and let the ultra-quiet mist do the rest. Its compact, rotatable plug fits virtually any outlet orientation — perfect for bathrooms, kitchens, and tight spaces where a larger diffuser just won't fit.\n\nA built-in 24-hour intelligent cyclic timer takes care of the scheduling, so you get consistent fragrance without lifting a finger. No fussing with apps, no mess, no noise.",
+    description: descFor(OP_SILENT),
     priceINR: 12999,
     bluetooth: false,
     coverageSqFt: [161, 250],
@@ -68,8 +91,7 @@ export const diffusers: Diffuser[] = [
     category: "diffuser",
     tier: "premium",
     tagline: "A premium aluminum column — in brushed gold or matte black.",
-    description:
-      "The Monolith is where function meets design. Standing tall in premium aluminum, this column diffuser brings a refined, considered presence to any space, in brushed gold or matte black. Its large 120 ml bottle keeps fragrance flowing for hours, and the built-in 2200 mAh rechargeable battery means it goes wherever you do, no outlet required.\n\nConnect via Bluetooth to control diffusion intensity and scheduling directly from your phone. Set a schedule and let it run your ambience on autopilot. A leak-proof dumping design ensures spill-free placement, always.",
+    description: descFor(OP_APP),
     priceINR: 19999,
     bluetooth: true,
     coverageSqFt: [108, 1075],
@@ -140,8 +162,7 @@ export const diffusers: Diffuser[] = [
     category: "diffuser",
     tier: "entry",
     tagline: "Soft to the Touch. Warm in Every Sense.",
-    description:
-      "The Loom reimagines the aroma diffuser with a soft fabric exterior that feels as good as it looks. Where most diffusers are cold and clinical, this one is warm and tactile — designed to sit naturally on a bedside table, salon counter, or living room shelf. The candle-like ambient glow adds a gentle flicker of warmth to evening routines.\n\nPair via Bluetooth for app-based control when you want it, or simply reach for the satisfying knob to dial in intensity the old-fashioned way. Intuitive by design, it fits any space and any lifestyle.",
+    description: descFor(OP_APP),
     priceINR: 15999,
     bluetooth: true,
     coverageSqFt: [108, 590],
@@ -184,8 +205,7 @@ export const diffusers: Diffuser[] = [
     category: "diffuser",
     tier: "premium",
     tagline: "Two Scents. One Space. Infinite Combinations.",
-    description:
-      "The Pillar does something no ordinary diffuser can: run two completely independent essential oil blends at once. Each of its dual 60 ml bottles operates separately, so you can diffuse two scents individually or layer them for a custom blend. Near-silent operation at ≤35 dB makes it whisper-quiet enough for a study, bedroom, or yoga session.\n\nBluetooth connectivity gives you full control from your phone — adjust each mist outlet independently without leaving your seat. Built from premium aluminum alloy and powered via USB.",
+    description: descFor(OP_APP_SCHEDULE),
     priceINR: 22999,
     bluetooth: true,
     coverageSqFt: [108, 538],
@@ -229,8 +249,7 @@ export const diffusers: Diffuser[] = [
     category: "diffuser",
     tier: "premium",
     tagline: "Always Know the Time. Always Set the Mood.",
-    description:
-      "The Ember is more than a diffuser — it is a desktop companion. An integrated LED clock with automatic network time synchronisation keeps you grounded in your day, while a soft natural breathing light and steady fragrance mist keep your space feeling calm. The glass-like acrylic finish gives it a premium, almost sculptural quality.\n\nBluetooth connectivity means you can adjust fragrance intensity from your phone without disturbing the calm it creates. Right at home on a work desk, bar cart, or bedside table.",
+    description: descFor(OP_APP),
     priceINR: 18999,
     bluetooth: true,
     coverageSqFt: [108, 538],
