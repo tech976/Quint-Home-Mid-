@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { literata, inter, quirk } from "@/lib/fonts";
+import { literata, inter } from "@/lib/fonts";
 import { LenisProvider } from "@/components/motion/lenis-provider";
 import { AnnouncementBar } from "@/components/layout/announcement-bar";
 import { Header } from "@/components/layout/header";
@@ -30,7 +30,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${literata.variable} ${inter.variable} ${quirk.variable} antialiased`}
+      className={`${literata.variable} ${inter.variable} antialiased`}
     >
       <body className="flex min-h-screen flex-col bg-[color:var(--color-white)] text-[color:var(--color-charcoal)]">
         <LenisProvider />

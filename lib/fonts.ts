@@ -1,5 +1,4 @@
 import { Literata, Inter } from "next/font/google";
-import localFont from "next/font/local";
 
 export const literata = Literata({
   subsets: ["latin"],
@@ -16,13 +15,4 @@ export const inter = Inter({
   weight: ["400", "500", "600"],
 });
 
-export const quirk = localFont({
-  src: "../public/fonts/Quirk-Regular.ttf",
-  display: "swap",
-  variable: "--font-quirk",
-  weight: "400",
-  style: "normal",
-  fallback: ["Literata", "Georgia", "serif"],
-});
-
-export const fontVars = `${literata.variable} ${inter.variable} ${quirk.variable}`;
+export const fontVars = `${literata.variable} ${inter.variable}`;

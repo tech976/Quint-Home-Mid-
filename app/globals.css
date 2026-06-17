@@ -32,7 +32,6 @@
   /* — Fonts (wired to next/font css vars) ------------------- */
   --font-serif: var(--font-literata), ui-serif, Georgia, serif;
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  --font-quirk: var(--font-quirk), ui-serif, Georgia, serif;
 
   /* — Fluid type scale (clamp: min · preferred · max) -------
      Refined editorial — closer to Aesop / Cereal magazine register.
