@@ -464,7 +464,7 @@ export default async function ProductPage({
                   <div className="relative flex items-start justify-end text-[0.58rem] uppercase tracking-[0.32em] opacity-90">
                     {o.tier === "hotel-credential" && (
                       <span className="rounded-full border border-current px-2 py-0.5 text-[0.5rem]">
-                        Credential
+                        Hotel Credential
                       </span>
                     )}
                   </div>

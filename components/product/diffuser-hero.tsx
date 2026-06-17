@@ -149,7 +149,7 @@ export function DiffuserHero({ product }: { product: Diffuser }) {
                     {oils.map((o) => (
                       <option key={o.slug} value={o.slug}>
                         {o.name}
-                        {o.tier === "hotel-credential" ? " · Credential" : ""}
+                        {o.tier === "hotel-credential" ? " · Hotel Credential" : ""}
                       </option>
                     ))}
                   </select>

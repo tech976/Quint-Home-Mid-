@@ -247,7 +247,7 @@ export default function ShopPage() {
                         <span className="tabular-nums">№{index}</span>
                         {o.tier === "hotel-credential" && (
                           <span className="border border-current px-1.5 py-0.5 text-[0.46rem]">
-                            Credential
+                            Hotel Credential
                           </span>
                         )}
                       </div>

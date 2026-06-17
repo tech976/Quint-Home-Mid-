@@ -39,8 +39,8 @@ const groups = [
         a: "Yes — every Quint Home oil is composed to IFRA (International Fragrance Association) standards. Safe around children and pets when used as directed.",
       },
       {
-        q: "What is a Credential oil?",
-        a: "Two of our eight oils, Grand Lobby and The Arrival, are Credential blends: composed to the same brief as the signature scenting you find in considered public spaces, then made for the home. They are more complex to blend, carry a credential badge, and sit at a small price premium over the standard oils.",
+        q: "What is a Hotel Credential oil?",
+        a: "Two of our eight oils, Grand Lobby and The Arrival, are Hotel Credential blends: composed to the same brief as the signature scenting you find in considered public spaces, then made for the home. They are more complex to blend, carry a Hotel Credential badge, and sit at a small price premium over the standard oils.",
       },
     ],
   },

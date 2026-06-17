@@ -60,7 +60,7 @@ export function OilHero({ oil }: { oil: FragranceOil }) {
                 Fragrance Oil · {oil.volumeML} ml
                 {oil.tier === "hotel-credential" && (
                   <span className="rounded-full border border-current px-2 py-0.5 text-[0.5rem] tracking-[0.28em]">
-                    Credential
+                    Hotel Credential
                   </span>
                 )}
               </p>

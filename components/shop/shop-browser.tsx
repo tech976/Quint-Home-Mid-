@@ -69,7 +69,7 @@ const ITEMS: BrowseItem[] = [
     priceINR: o.priceINR,
     category: "oils",
     categoryLabel:
-      o.tier === "hotel-credential" ? "Oil · Credential" : "Fragrance Oil",
+      o.tier === "hotel-credential" ? "Oil · Hotel Credential" : "Fragrance Oil",
     meta: o.mood ?? `${o.volumeML} ml`,
     keywords: [
       o.name,
