@@ -124,7 +124,7 @@ export function HeroNewspaper() {
             <figure className="mb-4 inline-block w-full">
               <div className="relative aspect-[4/5] w-full overflow-hidden bg-[color:var(--color-stardust-soft)]">
                 <Image
-                  src="/images/vibe/vibe-07.jpg"
+                  src="/images/vibe/vibe-07.webp"
                   alt="A room in Bandra, mid-afternoon"
                   fill
                   sizes="(min-width: 768px) 22vw, 90vw"

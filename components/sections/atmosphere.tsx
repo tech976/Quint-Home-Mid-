@@ -6,14 +6,14 @@ import { EditorialCarousel, type Slide } from "@/components/ui/editorial-carouse
  * Uses the brand vibe library as a curated visual library.
  */
 const slides: Slide[] = [
-  { src: "/images/vibe/vibe-01.jpg", alt: "Soft morning light through a curtain", eyebrow: "Morning", caption: "Early light through a curtain." },
-  { src: "/images/vibe/vibe-14.jpg", alt: "A hillside at sunset", eyebrow: "Last Light", caption: "A hillside just before sunset." },
-  { src: "/images/vibe/vibe-17.jpg", alt: "Sun through a canopy of trees", eyebrow: "Daybreak", caption: "Sun coming through the trees." },
-  { src: "/images/vibe/vibe-16.jpg", alt: "Late sun scattered across water", eyebrow: "Surface", caption: "Afternoon sun on the water." },
-  { src: "/images/vibe/vibe-20.jpg", alt: "A figure running through a golden field", eyebrow: "Golden Hour", caption: "Running through a field at golden hour." },
-  { src: "/images/vibe/vibe-22.jpg", alt: "A study in late afternoon light", eyebrow: "The Study", caption: "Late afternoon in a quiet room." },
-  { src: "/images/vibe/vibe-13.jpg", alt: "An interior in thin winter light", eyebrow: "Winter Light", caption: "Thin winter light through old glass." },
-  { src: "/images/vibe/vibe-21.jpg", alt: "A still, quiet room", eyebrow: "Stillness", caption: "A still, quiet room." },
+  { src: "/images/vibe/vibe-01.webp", alt: "Soft morning light through a curtain", eyebrow: "Morning", caption: "Early light through a curtain." },
+  { src: "/images/vibe/vibe-14.webp", alt: "A hillside at sunset", eyebrow: "Last Light", caption: "A hillside just before sunset." },
+  { src: "/images/vibe/vibe-17.webp", alt: "Sun through a canopy of trees", eyebrow: "Daybreak", caption: "Sun coming through the trees." },
+  { src: "/images/vibe/vibe-16.webp", alt: "Late sun scattered across water", eyebrow: "Surface", caption: "Afternoon sun on the water." },
+  { src: "/images/vibe/vibe-20.webp", alt: "A figure running through a golden field", eyebrow: "Golden Hour", caption: "Running through a field at golden hour." },
+  { src: "/images/vibe/vibe-22.webp", alt: "A study in late afternoon light", eyebrow: "The Study", caption: "Late afternoon in a quiet room." },
+  { src: "/images/vibe/vibe-13.webp", alt: "An interior in thin winter light", eyebrow: "Winter Light", caption: "Thin winter light through old glass." },
+  { src: "/images/vibe/vibe-21.webp", alt: "A still, quiet room", eyebrow: "Stillness", caption: "A still, quiet room." },
 ];
 
 export function Atmosphere() {

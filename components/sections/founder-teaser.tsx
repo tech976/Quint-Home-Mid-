@@ -13,7 +13,7 @@ export function FounderTeaser() {
               <figure className="col-span-2">
                 <div className="relative aspect-[16/10] overflow-hidden bg-[color:var(--color-aerial-soft)]">
                   <Image
-                    src="/images/vibe/vibe-07.jpg"
+                    src="/images/vibe/vibe-07.webp"
                     alt="A palace corridor at golden hour"
                     fill
                     sizes="(min-width: 768px) 48vw, 100vw"
@@ -28,7 +28,7 @@ export function FounderTeaser() {
               <figure>
                 <div className="relative aspect-[4/5] overflow-hidden bg-[color:var(--color-aerial-soft)]">
                   <Image
-                    src="/images/vibe/vibe-11.jpg"
+                    src="/images/vibe/vibe-11.webp"
                     alt="A drawing room, considered"
                     fill
                     sizes="(min-width: 768px) 24vw, 50vw"
@@ -42,7 +42,7 @@ export function FounderTeaser() {
               <figure>
                 <div className="relative aspect-[4/5] overflow-hidden bg-[color:var(--color-aerial-soft)]">
                   <Image
-                    src="/images/vibe/vibe-21.jpg"
+                    src="/images/vibe/vibe-21.webp"
                     alt="A warm mid-century room, late afternoon"
                     fill
                     sizes="(min-width: 768px) 24vw, 50vw"

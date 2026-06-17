@@ -263,7 +263,7 @@ export default function AboutPage() {
           <figure className="mt-14 md:mt-20">
             <div className="relative aspect-[2.4/1] w-[100%] overflow-hidden md:aspect-[3.4/1]">
               <Image
-                src="/images/vibe/vibe-04.jpg"
+                src="/images/vibe/vibe-04.webp"
                 alt="Late light moving over water"
                 fill
                 sizes="100vw"

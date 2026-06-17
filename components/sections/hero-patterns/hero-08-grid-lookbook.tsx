@@ -16,25 +16,25 @@ const PLATES: ReadonlyArray<{
   position?: string;
 }> = [
   {
-    src: "/images/vibe/vibe-03.jpg",
+    src: "/images/vibe/vibe-03.webp",
     alt: "Plate I — botanical study at dawn",
     caption: "Plate I · The Garden, Pre-Dawn",
     position: "center 40%",
   },
   {
-    src: "/images/vibe/vibe-08.jpg",
+    src: "/images/vibe/vibe-08.webp",
     alt: "Plate II — interior with diffused light",
     caption: "Plate II · A Room, Held Still",
     position: "center 35%",
   },
   {
-    src: "/images/vibe/vibe-12.jpg",
+    src: "/images/vibe/vibe-12.webp",
     alt: "Plate III — texture in golden hour",
     caption: "Plate III · The Hour Before Six",
     position: "center 50%",
   },
   {
-    src: "/images/vibe/vibe-17.jpg",
+    src: "/images/vibe/vibe-17.webp",
     alt: "Plate IV — hands and rain",
     caption: "Plate IV · Mumbai, In the Wet",
     position: "center 45%",

@@ -64,7 +64,7 @@ export function HeroAsymmetricCollage() {
             <figure className="relative">
               <div className="relative aspect-[3/2] w-full overflow-hidden bg-[color:var(--color-stardust-soft)]">
                 <Image
-                  src="/images/vibe/vibe-05.jpg"
+                  src="/images/vibe/vibe-05.webp"
                   alt="Golden-hour botanicals — the corridor that changes the room"
                   fill
                   preload
@@ -84,7 +84,7 @@ export function HeroAsymmetricCollage() {
             <figure className="relative">
               <div className="relative aspect-[3/4] w-full overflow-hidden bg-[color:var(--color-stardust-soft)]">
                 <Image
-                  src="/images/vibe/vibe-11.jpg"
+                  src="/images/vibe/vibe-11.webp"
                   alt="A quiet doorway — the spine of the room"
                   fill
                   sizes="(min-width: 768px) 32vw, 60vw"
@@ -106,7 +106,7 @@ export function HeroAsymmetricCollage() {
             <figure className="relative">
               <div className="relative aspect-square w-full overflow-hidden bg-[color:var(--color-stardust-soft)]">
                 <Image
-                  src="/images/vibe/vibe-18.jpg"
+                  src="/images/vibe/vibe-18.webp"
                   alt="A texture at rest — the footnote"
                   fill
                   sizes="(min-width: 768px) 24vw, 60vw"

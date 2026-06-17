@@ -22,7 +22,7 @@ const cards = [
     description:
       "Eight compositions, blended like fine perfumery. 70–90% concentrate, IFRA-compliant, read top, heart and base.",
     href: "/shop?category=oils",
-    image: "/images/vibe/vibe-09.jpg",
+    image: "/images/vibe/vibe-09.webp",
     count: "Eight scents",
     background: "bg-[color:var(--color-aerial)]",
   },

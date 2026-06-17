@@ -69,7 +69,7 @@ export function HeroEditorialSplit() {
           <figure className="relative mx-auto w-full max-w-[440px]">
             <div className="relative aspect-square overflow-hidden bg-[color:var(--color-stardust-soft)]">
               <Image
-                src="/images/vibe/vibe-05.jpg"
+                src="/images/vibe/vibe-05.webp"
                 alt="Golden hour wildflowers"
                 fill
                 priority

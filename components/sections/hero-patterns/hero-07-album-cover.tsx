@@ -56,7 +56,7 @@ export function HeroAlbumCover() {
           >
             <div className="relative aspect-square overflow-hidden bg-[color:var(--color-stardust-soft)] shadow-[0_30px_60px_-30px_rgba(41,51,41,0.25)]">
               <Image
-                src="/images/vibe/vibe-14.jpg"
+                src="/images/vibe/vibe-14.webp"
                 alt="Quint Home — Volume 01, the sleeve"
                 fill
                 priority
