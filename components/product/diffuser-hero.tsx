@@ -23,7 +23,6 @@ export function DiffuserHero({ product }: { product: Diffuser }) {
   const color = colors?.[active];
 
   const gallery = color?.gallery ?? product.gallery;
-  const finish = color?.finish ?? product.finish;
 
   // Included starting oil — chosen here rather than at checkout.
   const [oilSlug, setOilSlug] = useState(oils[0].slug);
@@ -39,8 +38,10 @@ export function DiffuserHero({ product }: { product: Diffuser }) {
     meta: o.mood,
   }));
 
-  // Technical specifications — taken from the website brief's diffuser value
-  // proposition. Connectivity / smart-home / scheduling apply per model.
+  // Technical specifications — sourced ONLY from the Quint Home website brief's
+  // "Electronic Diffusers — Product Value Proposition" (no catalogue figures).
+  // Connectivity / smart-home / scheduling apply per model.
+  const isDualMist = product.slug === "dual-mist-at302";
   const techSpecs: { label: string; value: string }[] = [
     { label: "Type", value: "Waterless cold-air nebulising electronic diffuser" },
     { label: "Technology", value: "Cold-air nebulization — no water, no steam, no heat" },
@@ -49,13 +50,16 @@ export function DiffuserHero({ product }: { product: Diffuser }) {
       label: "Connectivity",
       value: product.bluetooth
         ? "Bluetooth enabled — app-controlled, plus physical controls"
-        : "Physical controls · 24-hour cyclic timer",
+        : "Physical controls",
     },
     ...(product.bluetooth
       ? [{ label: "Smart home", value: "Apple Home · Amazon Alexa · Google Home" }]
       : []),
+    ...(isDualMist
+      ? [{ label: "Scheduling", value: "Set morning and evening schedules and intensity once via the app" }]
+      : []),
     { label: "Operation", value: "Silent — no fan noise, no water gurgling" },
-    { label: "Material & finish", value: finish },
+    { label: "Design", value: "A sculpted decor object, made to be displayed on a shelf, not hidden" },
     { label: "Fragrance oils", value: "70–90% concentration · IFRA-compliant · 100 ml refill" },
     { label: "Oil refill life", value: "Approximately 60–120 days, depending on usage" },
     { label: "Safety", value: "No open flame, no heat, no water — safe around children and pets" },
@@ -184,7 +188,8 @@ export function DiffuserHero({ product }: { product: Diffuser }) {
 
           <FadeUp delay={0.22}>
             <div className="mt-8">
-              <AddToBag priceINR={product.priceINR} />
+              {/* No subscribe & save on diffusers — that offer is for the oils only */}
+              <AddToBag priceINR={product.priceINR} subscribeOffer={false} />
             </div>
           </FadeUp>
 

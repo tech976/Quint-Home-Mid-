@@ -383,8 +383,8 @@ function OilProductPage({ oil }: { oil: FragranceOil }) {
                       {formatINR(d.priceINR)}
                     </span>
                   </div>
-                  <p className="mt-2 text-[0.74rem] text-[color:var(--color-charcoal-soft)]">
-                    {d.coverageLabel}
+                  <p className="mt-2 text-[0.74rem] leading-[1.4] text-[color:var(--color-charcoal-soft)]">
+                    {d.tagline}
                   </p>
                 </Link>
               </FadeUp>
