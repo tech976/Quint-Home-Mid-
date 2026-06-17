@@ -67,7 +67,7 @@ export function SmartHome() {
 
         <FadeUp delay={0.3}>
           <div className="mt-20 border-t border-[color:var(--color-stardust)]/15 pt-12">
-            <p className="text-center text-[0.6rem] uppercase tracking-[0.42em] text-[color:var(--color-stardust)]/50">
+            <p className="mx-auto text-center text-[0.6rem] uppercase tracking-[0.42em] text-[color:var(--color-stardust)]/50">
               Works with
             </p>
             <div className="mx-auto mt-8 grid max-w-[40rem] grid-cols-3 gap-6">
