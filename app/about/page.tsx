@@ -231,46 +231,52 @@ export default function AboutPage() {
             </div>
           </FadeUp>
 
-          <div className="grid gap-12 md:grid-cols-12 md:gap-16">
-            <FadeUp className="md:col-span-7">
-              <p
-                className="text-balance text-[color:var(--color-stardust)]"
-                style={{
-                  fontFamily: "var(--font-serif)",
-                  fontSize: "var(--text-3xl)",
-                  lineHeight: 1.16,
-                  letterSpacing: "-0.016em",
-                  fontWeight: 400,
-                }}
-              >
-                {VISION[0]}
-              </p>
-            </FadeUp>
+          <div className="grid gap-12 md:grid-cols-12 md:items-center md:gap-16">
+            {/* Vision copy — left */}
+            <div className="md:col-span-7">
+              <FadeUp>
+                <p
+                  className="text-balance text-[color:var(--color-stardust)]"
+                  style={{
+                    fontFamily: "var(--font-serif)",
+                    fontSize: "var(--text-3xl)",
+                    lineHeight: 1.16,
+                    letterSpacing: "-0.016em",
+                    fontWeight: 400,
+                  }}
+                >
+                  {VISION[0]}
+                </p>
+              </FadeUp>
+              <FadeUp delay={0.1}>
+                <div
+                  className="mt-8 max-w-[56ch] space-y-5 border-t border-[color:var(--color-stardust)]/15 pt-8 text-[var(--text-base)] leading-[1.85]"
+                  style={{ color: "rgba(238, 228, 216, 0.85)" }}
+                >
+                  <p>{VISION[1]}</p>
+                  <p>{VISION[2]}</p>
+                </div>
+              </FadeUp>
+            </div>
 
-            <FadeUp delay={0.1} className="min-w-0 md:col-span-5">
-              <div
-                className="space-y-5 text-[var(--text-base)] leading-[1.85]"
-                style={{ color: "rgba(238, 228, 216, 0.85)" }}
-              >
-                <p>{VISION[1]}</p>
-                <p>{VISION[2]}</p>
-              </div>
+            {/* Image — right, vertically centred against the copy */}
+            <FadeUp delay={0.16} className="md:col-span-5">
+              <figure>
+                <div className="relative aspect-[4/5] w-[100%] overflow-hidden">
+                  <Image
+                    src="/images/vibe/vibe-04.jpg"
+                    alt="Late light moving over water"
+                    fill
+                    sizes="(min-width: 768px) 40vw, 92vw"
+                    className="object-cover"
+                  />
+                </div>
+                <figcaption className="mt-4 text-[0.6rem] uppercase tracking-[0.32em] text-[color:var(--color-stardust)]/55">
+                  Late light moving over water
+                </figcaption>
+              </figure>
             </FadeUp>
           </div>
-
-          <FadeUp delay={0.16}>
-            <figure className="mt-14 md:mt-16">
-              <div className="relative aspect-[2.4/1] w-full overflow-hidden">
-                <Image
-                  src="/images/vibe/vibe-04.jpg"
-                  alt="Late light moving over water"
-                  fill
-                  sizes="(min-width: 1600px) 1520px, 92vw"
-                  className="object-cover"
-                />
-              </div>
-            </figure>
-          </FadeUp>
         </div>
       </section>
 
