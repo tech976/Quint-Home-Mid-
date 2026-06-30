@@ -1,4 +1,4 @@
-import type { SVGProps } from "react";
+import type { SVGProps, HTMLAttributes } from "react";
 
 // Inlined Quint Home wordmark — uses currentColor so it inherits text color.
 export function Logo(props: SVGProps<SVGSVGElement>) {
@@ -29,20 +29,34 @@ export function Logo(props: SVGProps<SVGSVGElement>) {
   );
 }
 
-// Monogram — for favicon-sized contexts. Simplified circle Q with descender.
-export function Monogram(props: SVGProps<SVGSVGElement>) {
+// Monogram — the official Quint Home logomark (brand PNG). Rendered through a
+// CSS mask tinted with currentColor, so it inherits the text colour of its
+// context (dark on light sections, light on the dark-green section) and stays
+// crisp at every size. Sizing/colour come from the passed className, exactly
+// like the previous inline SVG, so all call sites keep working unchanged.
+const MONOGRAM_SRC = "/images/brand/monogram.png";
+
+export function Monogram({
+  className = "",
+  style,
+  ...props
+}: HTMLAttributes<HTMLSpanElement>) {
   return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 800 800"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="38"
+    <span
       aria-hidden="true"
       {...props}
-    >
-      <circle cx="400" cy="380" r="300" />
-      <path d="M 380 200 L 380 600 Q 380 700 480 700 L 540 700" />
-    </svg>
+      className={`inline-block bg-current ${className}`}
+      style={{
+        maskImage: `url('${MONOGRAM_SRC}')`,
+        WebkitMaskImage: `url('${MONOGRAM_SRC}')`,
+        maskRepeat: "no-repeat",
+        WebkitMaskRepeat: "no-repeat",
+        maskPosition: "center",
+        WebkitMaskPosition: "center",
+        maskSize: "contain",
+        WebkitMaskSize: "contain",
+        ...style,
+      }}
+    />
   );
 }
