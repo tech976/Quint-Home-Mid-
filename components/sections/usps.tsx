@@ -11,8 +11,8 @@ import {
 } from "lucide-react";
 
 /**
- * USPs — the brand's unique selling points, from the brief. Alternating
- * image / text rows (zigzag), each with a number, lead, body, and an icon stat.
+ * USPs — the brand's unique selling points, from the brief. Compact alternating
+ * image / text rows, each with a number, lead, short body, and an icon stat.
  */
 type Usp = {
   n: string;
@@ -26,53 +26,37 @@ const usps: Usp[] = [
   {
     n: "01",
     lead: "Waterless cold-air nebulization",
-    body: "Technically superior to standard ultrasonic diffusers — no water dilution, richer scent, and larger room coverage.",
+    body: "Superior to ultrasonic diffusers — no water, richer scent, more coverage.",
     image: "/images/usp/usp-1.webp",
     stat: { icon: Wind, label: "Coverage", value: "200–500+ sq ft" },
   },
   {
     n: "02",
-    lead: "App-controlled and smart-home integrated",
-    body: "Works with Apple Home, Amazon Alexa and Google Home. Set your schedule once and forget it.",
+    lead: "App-controlled, smart-home integrated",
+    body: "Apple Home, Alexa or Google Home. Set a schedule once and forget it.",
     image: "/images/usp/usp-2.webp",
-    stat: {
-      icon: Smartphone,
-      label: "Works with",
-      value: "Apple Home · Alexa · Google Home",
-    },
+    stat: { icon: Smartphone, label: "Works with", value: "Apple · Alexa · Google" },
   },
   {
     n: "03",
-    lead: "Luxury hotel scents, now for the home",
-    body: "No other Indian brand offers this. IFRA-compliant, 70–90% concentrated oils, blended top, heart and base — not a synthetic air freshener.",
+    lead: "Luxury hotel scents, for the home",
+    body: "IFRA-compliant oils at full perfumery strength — not a synthetic air freshener.",
     image: "/images/usp/usp-3.webp",
-    stat: {
-      icon: Droplets,
-      label: "IFRA-compliant",
-      value: "70–90% oil concentration",
-    },
+    stat: { icon: Droplets, label: "IFRA-compliant", value: "70–90% concentration" },
   },
   {
     n: "04",
     lead: "A decor object, not an appliance",
-    body: "A sculptural form designed to sit on your shelf with poise and flair.",
+    body: "A sculptural form made to sit on the shelf, not hidden away.",
     image: "/images/usp/usp-4.webp",
-    stat: {
-      icon: Sparkles,
-      label: "Designed to blend",
-      value: "Made to be seen, not hidden",
-    },
+    stat: { icon: Sparkles, label: "Designed to blend", value: "Made to be seen" },
   },
   {
     n: "05",
     lead: "Wireless and rechargeable",
-    body: "Premium column models run cord-free on a built-in rechargeable battery — place them anywhere, no outlet required.",
+    body: "Premium models run cord-free on a rechargeable battery — place them anywhere.",
     image: "/images/usp/usp-5.webp",
-    stat: {
-      icon: BatteryCharging,
-      label: "Recharge once",
-      value: "Cord-free, weeks of fragrance",
-    },
+    stat: { icon: BatteryCharging, label: "Recharge once", value: "Weeks of fragrance" },
   },
 ];
 
@@ -82,19 +66,19 @@ export function USPs() {
       <div className="mx-auto max-w-[var(--container-full)] px-6 md:px-10">
         {/* Header */}
         <FadeUp>
-          <div className="mb-12 flex flex-col gap-6 border-b border-[color:var(--color-rule)] pb-6 md:mb-4 md:flex-row md:items-end md:justify-between">
+          <div className="mb-8 flex flex-col gap-4 border-b border-[color:var(--color-rule)] pb-6 md:flex-row md:items-end md:justify-between">
             <div>
               <p className="flex items-center gap-3 text-[0.6rem] uppercase tracking-[0.42em] text-[color:var(--color-charcoal-soft)]">
                 <Monogram className="h-4 w-4 shrink-0" />
                 Why Quint
               </p>
               <h2
-                className="mt-6 max-w-[16ch] text-balance"
+                className="mt-5 max-w-[16ch] text-balance"
                 style={{
                   fontFamily: "var(--font-serif)",
-                  fontSize: "var(--text-4xl)",
-                  lineHeight: 1.04,
-                  letterSpacing: "-0.022em",
+                  fontSize: "var(--text-3xl)",
+                  lineHeight: 1.06,
+                  letterSpacing: "-0.02em",
                   fontWeight: 400,
                 }}
               >
@@ -104,8 +88,8 @@ export function USPs() {
                 </em>
               </h2>
             </div>
-            <p className="max-w-[30ch] text-[0.92rem] leading-[1.7] text-[color:var(--color-charcoal-soft)] md:text-right">
-              Five things that set it apart from everything else on the shelf.
+            <p className="max-w-[28ch] text-[0.86rem] leading-[1.6] text-[color:var(--color-charcoal-soft)] md:text-right">
+              Five things that set it apart.
             </p>
           </div>
         </FadeUp>
@@ -117,10 +101,10 @@ export function USPs() {
             const imageFirst = i % 2 === 0;
             return (
               <FadeUp key={u.n}>
-                <div className="grid items-center gap-8 border-t border-[color:var(--color-rule)] py-12 first:border-t-0 md:grid-cols-2 md:gap-16 md:py-16">
+                <div className="grid items-center gap-6 border-t border-[color:var(--color-rule)] py-7 first:border-t-0 md:grid-cols-2 md:gap-12 md:py-9">
                   {/* Image */}
                   <div
-                    className={`relative aspect-[16/11] overflow-hidden ${
+                    className={`relative aspect-[16/9] overflow-hidden ${
                       imageFirst ? "md:order-1" : "md:order-2"
                     }`}
                   >
@@ -134,50 +118,49 @@ export function USPs() {
                   </div>
 
                   {/* Text */}
-                  <div
-                    className={`${imageFirst ? "md:order-2" : "md:order-1"}`}
-                  >
-                    <span
-                      className="block tabular-nums text-[color:var(--color-charcoal)]"
-                      style={{
-                        fontFamily: "var(--font-serif)",
-                        fontSize: "var(--text-4xl)",
-                        lineHeight: 1,
-                        letterSpacing: "-0.01em",
-                        fontWeight: 400,
-                      }}
-                    >
-                      {u.n}
-                    </span>
-                    <h3
-                      className="mt-5 max-w-[20ch] text-balance"
-                      style={{
-                        fontFamily: "var(--font-serif)",
-                        fontSize: "var(--text-2xl)",
-                        lineHeight: 1.12,
-                        letterSpacing: "-0.014em",
-                        fontWeight: 400,
-                      }}
-                    >
-                      {u.lead}
-                    </h3>
-                    <p className="mt-4 max-w-[42ch] text-[0.95rem] leading-[1.7] text-[color:var(--color-charcoal-soft)]">
+                  <div className={imageFirst ? "md:order-2" : "md:order-1"}>
+                    <div className="flex items-baseline gap-4">
+                      <span
+                        className="tabular-nums text-[color:var(--color-aerial-deep)]"
+                        style={{
+                          fontFamily: "var(--font-serif)",
+                          fontSize: "var(--text-2xl)",
+                          lineHeight: 1,
+                          letterSpacing: "-0.01em",
+                          fontWeight: 400,
+                        }}
+                      >
+                        {u.n}
+                      </span>
+                      <h3
+                        className="max-w-[22ch] text-balance"
+                        style={{
+                          fontFamily: "var(--font-serif)",
+                          fontSize: "var(--text-xl)",
+                          lineHeight: 1.12,
+                          letterSpacing: "-0.012em",
+                          fontWeight: 400,
+                        }}
+                      >
+                        {u.lead}
+                      </h3>
+                    </div>
+                    <p className="mt-3 max-w-[42ch] text-[0.9rem] leading-[1.6] text-[color:var(--color-charcoal-soft)]">
                       {u.body}
                     </p>
 
                     {/* Icon stat */}
-                    <div className="mt-7 flex items-center gap-4">
-                      <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[color:var(--color-rule)] text-[color:var(--color-aerial-deep)]">
-                        <Icon className="h-5 w-5" strokeWidth={1.4} aria-hidden="true" />
+                    <div className="mt-5 flex items-center gap-3">
+                      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[color:var(--color-rule)] text-[color:var(--color-aerial-deep)]">
+                        <Icon className="h-4 w-4" strokeWidth={1.4} aria-hidden="true" />
                       </span>
-                      <div className="min-w-0">
-                        <p className="text-[0.56rem] uppercase tracking-[0.3em] text-[color:var(--color-charcoal-soft)]">
-                          {u.stat.label}
-                        </p>
-                        <p className="mt-1 text-[0.86rem] text-[color:var(--color-charcoal)]">
+                      <p className="flex flex-wrap items-baseline gap-x-2 text-[0.62rem] uppercase tracking-[0.24em] text-[color:var(--color-charcoal-soft)]">
+                        <span>{u.stat.label}</span>
+                        <span className="opacity-40">·</span>
+                        <span className="text-[color:var(--color-charcoal)]">
                           {u.stat.value}
-                        </p>
-                      </div>
+                        </span>
+                      </p>
                     </div>
                   </div>
                 </div>
