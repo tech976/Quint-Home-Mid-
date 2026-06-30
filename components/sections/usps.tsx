@@ -11,8 +11,8 @@ import {
 } from "lucide-react";
 
 /**
- * USPs — the brand's unique selling points, from the brief. Compact alternating
- * image / text rows, each with a number, lead, short body, and an icon stat.
+ * USPs — the brand's selling points, from the brief. Compact alternating
+ * rows: a small short image beside the number, lead, short body and icon stat.
  */
 type Usp = {
   n: string;
@@ -94,32 +94,38 @@ export function USPs() {
           </div>
         </FadeUp>
 
-        {/* Alternating rows */}
+        {/* Compact alternating rows */}
         <div>
           {usps.map((u, i) => {
             const Icon = u.stat.icon;
             const imageFirst = i % 2 === 0;
             return (
               <FadeUp key={u.n}>
-                <div className="grid items-center gap-6 border-t border-[color:var(--color-rule)] py-7 first:border-t-0 md:grid-cols-2 md:gap-12 md:py-9">
-                  {/* Image */}
+                <div className="flex flex-col gap-4 border-t border-[color:var(--color-rule)] py-6 first:border-t-0 md:flex-row md:items-center md:gap-10 md:py-7">
+                  {/* Image — small + short, so it doesn't take much height */}
                   <div
-                    className={`relative aspect-[16/9] overflow-hidden ${
+                    className={`w-full md:w-[34%] ${
                       imageFirst ? "md:order-1" : "md:order-2"
                     }`}
                   >
-                    <Image
-                      src={u.image}
-                      alt={u.lead}
-                      fill
-                      sizes="(min-width: 768px) 46vw, 100vw"
-                      className="object-cover"
-                    />
+                    <div className="relative aspect-[16/9] overflow-hidden">
+                      <Image
+                        src={u.image}
+                        alt={u.lead}
+                        fill
+                        sizes="(min-width: 768px) 34vw, 100vw"
+                        className="object-cover"
+                      />
+                    </div>
                   </div>
 
                   {/* Text */}
-                  <div className={imageFirst ? "md:order-2" : "md:order-1"}>
-                    <div className="flex items-baseline gap-4">
+                  <div
+                    className={`md:flex-1 ${
+                      imageFirst ? "md:order-2" : "md:order-1"
+                    }`}
+                  >
+                    <div className="flex items-baseline gap-3">
                       <span
                         className="tabular-nums text-[color:var(--color-aerial-deep)]"
                         style={{
@@ -133,7 +139,7 @@ export function USPs() {
                         {u.n}
                       </span>
                       <h3
-                        className="max-w-[22ch] text-balance"
+                        className="text-balance"
                         style={{
                           fontFamily: "var(--font-serif)",
                           fontSize: "var(--text-xl)",
@@ -145,13 +151,11 @@ export function USPs() {
                         {u.lead}
                       </h3>
                     </div>
-                    <p className="mt-3 max-w-[42ch] text-[0.9rem] leading-[1.6] text-[color:var(--color-charcoal-soft)]">
+                    <p className="mt-2.5 max-w-[54ch] text-[0.9rem] leading-[1.6] text-[color:var(--color-charcoal-soft)]">
                       {u.body}
                     </p>
-
-                    {/* Icon stat */}
-                    <div className="mt-5 flex items-center gap-3">
-                      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[color:var(--color-rule)] text-[color:var(--color-aerial-deep)]">
+                    <div className="mt-4 flex items-center gap-3">
+                      <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[color:var(--color-rule)] text-[color:var(--color-aerial-deep)]">
                         <Icon className="h-4 w-4" strokeWidth={1.4} aria-hidden="true" />
                       </span>
                       <p className="flex flex-wrap items-baseline gap-x-2 text-[0.62rem] uppercase tracking-[0.24em] text-[color:var(--color-charcoal-soft)]">
