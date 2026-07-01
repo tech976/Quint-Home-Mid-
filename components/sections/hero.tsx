@@ -61,7 +61,7 @@ export function Hero() {
   const activeSlides = useMemo(
     () =>
       isMobile
-        ? slides.filter((s) => !(s.type === "video" && s.desktopOnly))
+        ? slides.filter((s) => s.type !== "video")
         : slides,
     [isMobile]
   );
@@ -147,7 +147,7 @@ export function Hero() {
                   fill
                   priority={i === 0}
                   sizes="100vw"
-                  className="hidden object-cover motion-safe:animate-hero-drift md:block"
+                  className="hidden object-cover md:block"
                   style={{ objectPosition: s.position }}
                 />
                 {/* Phones — portrait crop */}
@@ -157,7 +157,7 @@ export function Hero() {
                   fill
                   priority={i === 0}
                   sizes="100vw"
-                  className="object-cover motion-safe:animate-hero-drift md:hidden"
+                  className="object-cover md:hidden"
                   style={{ objectPosition: s.position }}
                 />
               </>
@@ -168,7 +168,7 @@ export function Hero() {
                 fill
                 priority={i === 0}
                 sizes="100vw"
-                className="object-cover motion-safe:animate-hero-drift"
+                className="object-cover"
                 style={{ objectPosition: s.position }}
               />
             )

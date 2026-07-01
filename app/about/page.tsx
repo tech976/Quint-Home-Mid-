@@ -41,9 +41,10 @@ const VISION = [
 
 // Udaipur — the founding palace, where the story begins.
 const UDAIPUR = [
-  "/images/udaipur/udaipur-4.webp",
-  "/images/udaipur/udaipur-5.webp",
-  "/images/udaipur/udaipur-6.webp",
+  "/images/udaipur/udaipur-lake-1.webp",
+  "/images/udaipur/udaipur-lake-2.webp",
+  "/images/udaipur/udaipur-lake-3.webp",
+  "/images/udaipur/udaipur-lake-4.webp",
 ];
 
 export default function AboutPage() {
@@ -165,7 +166,7 @@ export default function AboutPage() {
           {/* A short Udaipur gallery — the palace where it began */}
           <FadeUp delay={0.1}>
             <div className="mt-12 md:mt-16">
-              <div className="grid grid-cols-2 gap-3 md:grid-cols-3 md:gap-4">
+              <div className="grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-4">
                 {UDAIPUR.map((src, i) => (
                   <div
                     key={i}
