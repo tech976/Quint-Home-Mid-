@@ -18,6 +18,9 @@ type Usp = {
   n: string;
   lead: string;
   image: string;
+  /** Native pixel dimensions — so mobile can show the photo un-cropped. */
+  w: number;
+  h: number;
   stat: { icon: LucideIcon; value: string };
 };
 
@@ -26,30 +29,40 @@ const usps: Usp[] = [
     n: "01",
     lead: "Waterless cold-air nebulisation",
     image: "/images/usp/usp-1.webp",
+    w: 1400,
+    h: 737,
     stat: { icon: Wind, value: "200–500+ sq ft coverage" },
   },
   {
     n: "02",
     lead: "App-controllable",
     image: "/images/usp/usp-2.webp",
+    w: 1400,
+    h: 722,
     stat: { icon: Smartphone, value: "Set it from your phone" },
   },
   {
     n: "03",
     lead: "Luxury hotel scents, for home",
     image: "/images/usp/usp-3.webp",
+    w: 1400,
+    h: 934,
     stat: { icon: Droplets, value: "70–90% concentration" },
   },
   {
     n: "04",
     lead: "A decor object, not an appliance",
     image: "/images/usp/usp-4.webp",
+    w: 1400,
+    h: 934,
     stat: { icon: Sparkles, value: "Made to be seen" },
   },
   {
     n: "05",
     lead: "Wireless and rechargeable",
     image: "/images/usp/usp-5.webp",
+    w: 1400,
+    h: 1109,
     stat: { icon: BatteryCharging, value: "Cord-free, runs for weeks" },
   },
 ];
@@ -94,18 +107,21 @@ export function USPs() {
             const Icon = u.stat.icon;
             return (
               <FadeUp key={u.n} delay={(i % 5) * 0.05} className="h-[100%]">
-                <article className="group flex h-[100%] flex-row overflow-hidden border border-[color:var(--color-rule)] bg-[color:var(--color-white)] transition-shadow duration-500 hover:shadow-[0_24px_50px_-30px_rgba(58,53,50,0.45)] md:flex-col">
-                  <div className="relative aspect-square w-2/5 shrink-0 overflow-hidden bg-[color:var(--color-stardust-soft)] md:aspect-[4/3] md:w-[100%]">
+                <article className="group flex h-[100%] flex-col overflow-hidden border border-[color:var(--color-rule)] bg-[color:var(--color-white)] transition-shadow duration-500 hover:shadow-[0_24px_50px_-30px_rgba(58,53,50,0.45)]">
+                  <div
+                    className="relative overflow-hidden bg-[color:var(--color-stardust-soft)] md:!aspect-[4/3]"
+                    style={{ aspectRatio: `${u.w} / ${u.h}` }}
+                  >
                     <Image
                       src={u.image}
                       alt={u.lead}
                       fill
-                      sizes="(min-width: 1024px) 18vw, (min-width: 768px) 30vw, 40vw"
+                      sizes="(min-width: 1024px) 18vw, (min-width: 768px) 30vw, 100vw"
                       className="object-cover transition-transform duration-[1400ms] ease-[var(--ease-quint)] group-hover:scale-[1.05]"
                     />
                   </div>
 
-                  <div className="flex flex-1 flex-col justify-center p-4 md:justify-start md:p-5">
+                  <div className="flex flex-1 flex-col p-4 md:p-5">
                     <span className="text-[0.6rem] tabular-nums tracking-[0.2em] text-[color:var(--color-clay)]">
                       {u.n}
                     </span>
@@ -122,7 +138,7 @@ export function USPs() {
                       {u.lead}
                     </h3>
 
-                    <div className="mt-3 flex items-center gap-2.5 border-t border-[color:var(--color-rule)] pt-3 md:mt-auto md:pt-3.5">
+                    <div className="mt-auto flex items-center gap-2.5 border-t border-[color:var(--color-rule)] pt-3.5">
                       <Icon
                         className="h-4 w-4 shrink-0 text-[color:var(--color-aerial-deep)]"
                         strokeWidth={1.4}
