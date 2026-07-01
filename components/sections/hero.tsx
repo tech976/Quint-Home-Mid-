@@ -33,6 +33,7 @@ const slides: Slide[] = [
   {
     type: "image",
     src: "/images/hero-couple.webp",
+    srcMobile: "/images/hero-couple-mobile.webp",
     alt: "A couple relaxing in a sunlit living room with a Quint diffuser",
     position: "center 50%",
   },
