@@ -33,7 +33,7 @@ const groups = [
     items: [
       {
         q: "How long does a 100 ml oil last?",
-        a: "Approximately 60–140 days, depending on the model and intensity. Most models average around 90 days at moderate settings. We&rsquo;ll suggest a cadence at checkout.",
+        a: "Approximately 60–140 days, depending on the model and intensity. Most models average around 90 days at moderate settings. We’ll suggest a cadence at checkout.",
       },
       {
         q: "Are the oils IFRA-compliant?",
@@ -45,7 +45,7 @@ const groups = [
       },
       {
         q: "Can I use other oils in the diffuser?",
-        a: "Use only Quint Home oils. Ours are undiluted, high-concentration blends made specifically for waterless cold-air nebulisation. Diluted oils, water-based oils, or third-party blends can clog the nebuliser and won&rsquo;t perform as intended — and may void your warranty.",
+        a: "Use only Quint Home oils. Ours are undiluted, high-concentration blends made specifically for waterless cold-air nebulisation. Diluted oils, water-based oils, or third-party blends can clog the nebuliser and won’t perform as intended — and may void your warranty.",
       },
     ],
   },
@@ -97,7 +97,7 @@ export default function FAQPage() {
 
             <FadeUp delay={0.1} className="md:col-span-5">
               <p className="max-w-[40ch] text-[var(--text-base)] leading-[1.85] text-[color:var(--color-charcoal-soft)]">
-                If your question isn&rsquo;t answered below, write to us at
+                If your question isn’t answered below, write to us at
                 hello@quinthome.in — we reply within 24 hours.
               </p>
             </FadeUp>
