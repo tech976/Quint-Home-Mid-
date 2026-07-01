@@ -21,6 +21,7 @@ const slides: Slide[] = [
     alt: "A man reading in a serene living room, a Quint diffuser misting on the table",
     position: "center 50%",
   },
+  { type: "video", src: "/videos/hero-5.mp4" },
   {
     type: "image",
     src: "/images/hero-1.webp",
