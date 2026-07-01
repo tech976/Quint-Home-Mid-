@@ -28,9 +28,8 @@ const FOUNDER_CLOSING =
 
 // Founder bio — for the "Meet the founder" section with his portrait.
 const FOUNDER_BIO = [
-  "Semil Rambhiya is the kind of person who notices everything. A background in real estate taught him how spaces work. A love for travel taught him how they feel. And a lifelong inability to settle for anything less than exactly right taught him the difference between the two.",
-  "When he set about designing his own home, he found himself stuck on one detail that kept escaping him — scent. Every option available felt like a compromise. For someone like Semil, that gap wasn't something to make peace with. It was something to fix.",
-  "Quint Home is what he built — for himself first, and then for everyone else who refuses to settle.",
+  "Semil Rambhiya is the Founder of Quint Home. With a background in real estate and a deep appreciation for architecture, interiors, and thoughtful design, he believes the spaces we inhabit shape the way we feel.",
+  "Through Quint Home, he brings this philosophy to life with objects and devices that blend fragrance, design, and technology — creating everyday experiences that feel intentional, elevated, and effortlessly beautiful.",
 ];
 
 // Vision — verbatim, as supplied.
@@ -243,13 +242,14 @@ export default function AboutPage() {
             {/* Portrait */}
             <FadeUp className="md:col-span-5">
               <figure>
-                <div className="relative aspect-[4/5] overflow-hidden border border-[color:var(--color-rule)] bg-[color:var(--color-stardust)]">
-                  {/* TODO: drop in the founder's photo at /images/founder/semil.webp */}
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="text-[0.58rem] uppercase tracking-[0.36em] text-[color:var(--color-charcoal-soft)]">
-                      Portrait
-                    </span>
-                  </div>
+                <div className="relative aspect-[3/4] overflow-hidden border border-[color:var(--color-rule)] bg-[color:var(--color-stardust)]">
+                  <Image
+                    src="/images/founder/semil.webp"
+                    alt="Semil Rambhiya, Founder of Quint Home"
+                    fill
+                    sizes="(min-width: 768px) 40vw, 100vw"
+                    className="object-cover"
+                  />
                 </div>
                 <figcaption className="mt-4 text-[0.6rem] uppercase tracking-[0.32em] text-[color:var(--color-charcoal-soft)]">
                   Semil Rambhiya · Founder
@@ -267,7 +267,6 @@ export default function AboutPage() {
               <FadeUp delay={0.12}>
                 <div className="mt-6 max-w-[52ch] space-y-5 border-t border-[color:var(--color-rule)] pt-6 text-[var(--text-base)] leading-[1.9] text-[color:var(--color-charcoal-soft)]">
                   <p>{FOUNDER_BIO[1]}</p>
-                  <p>{FOUNDER_BIO[2]}</p>
                 </div>
               </FadeUp>
             </div>
