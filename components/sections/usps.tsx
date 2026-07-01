@@ -88,24 +88,24 @@ export function USPs() {
           </div>
         </FadeUp>
 
-        {/* One row of equal cards */}
-        <div className="grid grid-cols-2 gap-3 md:grid-cols-3 md:gap-4 lg:grid-cols-5">
+        {/* Cards — horizontal rows on mobile, a 3/5-up grid on larger screens */}
+        <div className="grid grid-cols-1 gap-3 md:grid-cols-3 md:gap-4 lg:grid-cols-5">
           {usps.map((u, i) => {
             const Icon = u.stat.icon;
             return (
               <FadeUp key={u.n} delay={(i % 5) * 0.05} className="h-[100%]">
-                <article className="group flex h-[100%] flex-col overflow-hidden border border-[color:var(--color-rule)] bg-[color:var(--color-white)] transition-shadow duration-500 hover:shadow-[0_24px_50px_-30px_rgba(58,53,50,0.45)]">
-                  <div className="relative aspect-[4/3] overflow-hidden bg-[color:var(--color-stardust-soft)]">
+                <article className="group flex h-[100%] flex-row overflow-hidden border border-[color:var(--color-rule)] bg-[color:var(--color-white)] transition-shadow duration-500 hover:shadow-[0_24px_50px_-30px_rgba(58,53,50,0.45)] md:flex-col">
+                  <div className="relative aspect-square w-2/5 shrink-0 overflow-hidden bg-[color:var(--color-stardust-soft)] md:aspect-[4/3] md:w-[100%]">
                     <Image
                       src={u.image}
                       alt={u.lead}
                       fill
-                      sizes="(min-width: 1024px) 18vw, (min-width: 768px) 30vw, 45vw"
+                      sizes="(min-width: 1024px) 18vw, (min-width: 768px) 30vw, 40vw"
                       className="object-cover transition-transform duration-[1400ms] ease-[var(--ease-quint)] group-hover:scale-[1.05]"
                     />
                   </div>
 
-                  <div className="flex flex-1 flex-col p-4 md:p-5">
+                  <div className="flex flex-1 flex-col justify-center p-4 md:justify-start md:p-5">
                     <span className="text-[0.6rem] tabular-nums tracking-[0.2em] text-[color:var(--color-clay)]">
                       {u.n}
                     </span>
@@ -122,7 +122,7 @@ export function USPs() {
                       {u.lead}
                     </h3>
 
-                    <div className="mt-auto flex items-center gap-2.5 border-t border-[color:var(--color-rule)] pt-3.5">
+                    <div className="mt-3 flex items-center gap-2.5 border-t border-[color:var(--color-rule)] pt-3 md:mt-auto md:pt-3.5">
                       <Icon
                         className="h-4 w-4 shrink-0 text-[color:var(--color-aerial-deep)]"
                         strokeWidth={1.4}
