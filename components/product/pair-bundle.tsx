@@ -11,6 +11,8 @@ export interface PairOption {
   image: string;
   /** Small supporting line, e.g. coverage or scent family. */
   meta?: string;
+  /** Scent-note summary shown in the option label and under the picker. */
+  note?: string;
 }
 
 interface Props {
@@ -107,6 +109,7 @@ export function PairBundle({
                   {options.map((o) => (
                     <option key={o.slug} value={o.slug}>
                       {o.name}
+                      {o.note ? ` — ${o.note}` : ""}
                     </option>
                   ))}
                 </select>
@@ -117,6 +120,11 @@ export function PairBundle({
                   ↓
                 </span>
               </div>
+              {partner.note && (
+                <p className="mt-1.5 text-[0.72rem] leading-[1.4] text-[color:var(--color-charcoal-soft)]">
+                  {partner.note}
+                </p>
+              )}
             </div>
             <span className="flex shrink-0 flex-col items-end leading-none">
               <span className="text-[0.68rem] text-[color:var(--color-charcoal-soft)] line-through">

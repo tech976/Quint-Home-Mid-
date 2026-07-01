@@ -5,7 +5,7 @@ import { FadeUp } from "@/components/motion/fade-up";
 import { ProductGallery } from "@/components/product/product-gallery";
 import { AddToBag } from "@/components/product/add-to-bag";
 import { PairBundle, type PairOption } from "@/components/product/pair-bundle";
-import { oils } from "@/lib/data/oils";
+import { oils, oilNoteSummary } from "@/lib/data/oils";
 import { cn } from "@/lib/utils";
 import type { Diffuser } from "@/lib/types";
 
@@ -25,16 +25,19 @@ export function DiffuserHero({ product }: { product: Diffuser }) {
 
   // Included starting oil — chosen here rather than at checkout.
   const [oilSlug, setOilSlug] = useState(oils[0].slug);
+  const selectedOil = oils.find((o) => o.slug === oilSlug) ?? oils[0];
 
   const descriptionParagraphs = product.description.split("\n\n");
 
-  // Bundle — add an extra oil to the order at a discount.
+  // Bundle — add an extra oil to the order at a discount. Carry the note
+  // summary so the picker reads as a fragrance, not just a name.
   const oilOptions: PairOption[] = oils.map((o) => ({
     slug: o.slug,
     name: o.name,
     priceINR: o.priceINR,
     image: o.image,
     meta: o.mood,
+    note: oilNoteSummary(o),
   }));
 
   // Technical specifications — the per-model spec sheet, taken verbatim from the
@@ -145,7 +148,7 @@ export function DiffuserHero({ product }: { product: Diffuser }) {
                 >
                   {oils.map((o) => (
                     <option key={o.slug} value={o.slug}>
-                      {o.name}
+                      {o.name} — {oilNoteSummary(o)}
                       {o.tier === "hotel-credential" ? " · Hotel Credential" : ""}
                     </option>
                   ))}
@@ -157,7 +160,32 @@ export function DiffuserHero({ product }: { product: Diffuser }) {
                   ↓
                 </span>
               </div>
-              <p className="mt-2.5 text-[0.72rem] leading-[1.5] text-[color:var(--color-charcoal-soft)]">
+
+              {/* Live scent profile for the chosen oil — so the name in the
+                  dropdown is never a mystery. Updates as the selection changes. */}
+              <div className="mt-3 border-t border-[color:var(--color-rule)] pt-3">
+                <p className="font-[family-name:var(--font-serif)] text-[0.92rem] italic leading-[1.5] text-[color:var(--color-charcoal)]">
+                  {selectedOil.tagline}
+                </p>
+                <dl className="mt-2.5 grid gap-1.5">
+                  {([
+                    ["Top", selectedOil.notes.top],
+                    ["Heart", selectedOil.notes.heart],
+                    ["Base", selectedOil.notes.base],
+                  ] as const).map(([label, notes]) => (
+                    <div key={label} className="flex gap-3">
+                      <dt className="w-9 shrink-0 pt-0.5 text-[0.56rem] uppercase tracking-[0.2em] text-[color:var(--color-charcoal-soft)]">
+                        {label}
+                      </dt>
+                      <dd className="text-[0.78rem] leading-[1.5] text-[color:var(--color-charcoal)]">
+                        {notes.join(" · ")}
+                      </dd>
+                    </div>
+                  ))}
+                </dl>
+              </div>
+
+              <p className="mt-3 text-[0.72rem] leading-[1.5] text-[color:var(--color-charcoal-soft)]">
                 Your first 100 ml is included free. Swap scents or add more
                 anytime.
               </p>

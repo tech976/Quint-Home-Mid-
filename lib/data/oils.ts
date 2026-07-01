@@ -1,5 +1,16 @@
 import type { FragranceOil } from "../types";
 
+/**
+ * A compact, representative scent-note line for pickers and dropdowns — one
+ * note from each layer, e.g. "Citrus · Cardamom · Musk". Enough for a shopper
+ * to recognise the fragrance from the name alone, without over-filling a
+ * native <option> (which can only render plain text).
+ */
+export function oilNoteSummary(oil: FragranceOil): string {
+  const { top, heart, base } = oil.notes;
+  return [top[0], heart[0], base[0]].filter(Boolean).join(" · ");
+}
+
 // ============================================================
 //  Quint Home — Signature Scents
 //  Source of truth: Quint Home Website Brief vF — "Fragrance
