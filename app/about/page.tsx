@@ -216,12 +216,6 @@ export default function AboutPage() {
               {FOUNDER_CLOSING}
             </p>
           </FadeUp>
-
-          <FadeUp delay={0.12}>
-            <p className="mx-auto mt-8 text-center text-[0.62rem] uppercase tracking-[0.32em] text-[color:var(--color-charcoal-soft)]">
-              Semil Rambhiya · Founder, Quint Home
-            </p>
-          </FadeUp>
         </div>
       </section>
 
@@ -241,9 +235,9 @@ export default function AboutPage() {
                 className="mt-6"
                 style={{
                   fontFamily: "var(--font-serif)",
-                  fontSize: "var(--text-display)",
-                  lineHeight: 0.95,
-                  letterSpacing: "-0.03em",
+                  fontSize: "var(--text-4xl)",
+                  lineHeight: 1.0,
+                  letterSpacing: "-0.022em",
                   fontWeight: 400,
                 }}
               >
@@ -256,20 +250,20 @@ export default function AboutPage() {
           </FadeUp>
 
           {/* Feature — portrait + pull-quote at equal height */}
-          <div className="mt-12 grid gap-10 border-t border-[color:var(--color-rule)] pt-12 md:mt-14 md:grid-cols-12 md:items-stretch md:gap-14 md:pt-14">
+          <div className="mt-12 grid gap-10 border-t border-[color:var(--color-rule)] pt-12 md:mt-14 md:grid-cols-12 md:items-center md:gap-14 md:pt-14">
             <FadeUp className="md:col-span-5">
-              <div className="relative h-full min-h-[20rem] overflow-hidden border border-[color:var(--color-rule)] bg-[color:var(--color-stardust)]">
+              <div className="relative aspect-[3/4] overflow-hidden border border-[color:var(--color-rule)] bg-[color:var(--color-stardust)]">
                 <Image
                   src="/images/founder/semil.webp"
                   alt="Semil Rambhiya, Founder of Quint Home"
                   fill
                   sizes="(min-width: 768px) 40vw, 100vw"
-                  className="object-cover object-[50%_22%]"
+                  className="object-cover"
                 />
               </div>
             </FadeUp>
 
-            <div className="flex flex-col justify-center md:col-span-7 md:pl-2">
+            <div className="md:col-span-7 md:pl-2">
               <FadeUp>
                 <span
                   aria-hidden="true"
