@@ -140,7 +140,7 @@ export function AddToBag({
       </button>
 
       <p className="mt-1 text-[0.7rem] uppercase tracking-[0.24em] text-[color:var(--color-charcoal-soft)]">
-        Free shipping over ₹5,000 · Ships from Mumbai · 3–5 days
+        Free shipping over ₹5,000
       </p>
     </div>
   );

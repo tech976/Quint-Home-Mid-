@@ -15,7 +15,7 @@ export function ReedCandles() {
         <FadeUp>
           <div className="mb-14 flex flex-col gap-6 border-b border-[color:var(--color-rule)] pb-6 md:mb-20 md:flex-row md:items-end md:justify-between">
             <div>
-              <p className="text-[0.62rem] uppercase tracking-[0.42em] text-[color:var(--color-charcoal-soft)]">
+              <p className="text-[0.72rem] md:text-[0.95rem] uppercase tracking-[0.16em] md:tracking-[0.22em] text-[color:var(--color-charcoal-soft)]">
                 Reed Diffusers &amp; Candles
               </p>
               <h2
@@ -48,7 +48,7 @@ export function ReedCandles() {
                 key={i}
                 className="w-[80%] shrink-0 snap-start sm:w-[19rem] lg:w-[21rem]"
               >
-                <div className="relative flex aspect-[4/5] items-center justify-center overflow-hidden border border-[color:var(--color-rule)] bg-[color:var(--color-stardust-soft)]">
+                <div className="relative flex aspect-[8/9] items-center justify-center overflow-hidden border border-[color:var(--color-rule)] bg-[color:var(--color-stardust-soft)]">
                   <Monogram className="h-10 w-10 text-[color:var(--color-aerial)]/40" />
                 </div>
                 <div className="mt-7 grid gap-3">

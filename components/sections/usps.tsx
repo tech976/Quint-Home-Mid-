@@ -62,7 +62,7 @@ export function USPs() {
         <FadeUp>
           <div className="mb-8 flex flex-col gap-3 md:mb-10 md:flex-row md:items-end md:justify-between">
             <div>
-              <p className="flex items-center gap-3 text-[0.6rem] uppercase tracking-[0.42em] text-[color:var(--color-charcoal-soft)]">
+              <p className="flex items-center gap-3 text-[0.72rem] md:text-[0.95rem] uppercase tracking-[0.16em] md:tracking-[0.22em] text-[color:var(--color-charcoal-soft)]">
                 <Monogram className="h-4 w-4 shrink-0" />
                 Why Quint
               </p>

@@ -80,7 +80,7 @@ export function HowToUse() {
                 {/* Step image – photo steps fill the tile (object-cover); app
                     screens are transparent cutouts that float (object-contain). */}
                 <div
-                  className={`relative aspect-[4/5] ${
+                  className={`relative aspect-[8/9] ${
                     s.photo ? "overflow-hidden" : ""
                   }`}
                 >

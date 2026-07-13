@@ -12,6 +12,14 @@ const SLUG_REDIRECTS: Record<string, string> = {
 };
 
 const nextConfig: NextConfig = {
+  images: {
+    // Allow a crisper quality for hero/editorial imagery (Next 16 requires
+    // whitelisting any quality value used via the `quality` prop).
+    qualities: [75, 90],
+    // Next 16 defaults this to 4h, which makes swapped-in images look stale
+    // during editing; a short TTL re-optimises promptly.
+    minimumCacheTTL: 60,
+  },
   async redirects() {
     return Object.entries(SLUG_REDIRECTS).map(([from, to]) => ({
       source: `/shop/${from}`,

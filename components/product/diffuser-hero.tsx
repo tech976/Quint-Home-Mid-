@@ -294,6 +294,10 @@ export function DiffuserHero({
           {/* Assurances */}
           <FadeUp delay={0.24}>
             <ul className="mt-8 grid gap-2.5 border-t border-[color:var(--color-rule)] pt-8 text-[0.8rem] leading-[1.5] text-[color:var(--color-charcoal-soft)]">
+              <li className="flex items-baseline gap-3 text-[color:var(--color-charcoal)]">
+                <span className="text-[color:var(--color-clay)]">–</span>
+                Complimentary oil of your choice on orders above ₹20,000.
+              </li>
               <li className="flex items-baseline gap-3">
                 <span className="text-[color:var(--color-clay)]">–</span>
                 Ships with your chosen 50 ml oil, ready to use.

@@ -21,7 +21,7 @@ export async function DiffuserShowcase() {
         <FadeUp>
           <div className="mb-14 flex flex-col gap-6 border-b border-[color:var(--color-rule)] pb-6 md:mb-20 md:flex-row md:items-end md:justify-between">
             <div>
-              <p className="text-[0.62rem] uppercase tracking-[0.42em] text-[color:var(--color-charcoal-soft)]">
+              <p className="text-[0.72rem] md:text-[0.95rem] uppercase tracking-[0.16em] md:tracking-[0.22em] text-[color:var(--color-charcoal-soft)]">
                 The Diffusers
               </p>
               <h2
@@ -56,7 +56,7 @@ export async function DiffuserShowcase() {
                 href={`/shop/${d.slug}`}
                 className="group block w-[84%] shrink-0 snap-start sm:w-[46%] lg:w-[calc((100%_-_3.5rem)/3)]"
               >
-                <div className="relative aspect-[4/5] overflow-hidden bg-[color:var(--color-stardust-soft)]">
+                <div className="relative aspect-[8/9] overflow-hidden bg-[color:var(--color-stardust-soft)]">
                   <Image
                     src={d.image}
                     alt={d.name}

@@ -125,7 +125,7 @@ export function ScentFinder() {
                 alt={result.name}
                 fill
                 sizes="(min-width: 768px) 45vw, 100vw"
-                className="object-cover"
+                className="object-cover object-[center_65%]"
               />
             )}
 

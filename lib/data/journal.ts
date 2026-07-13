@@ -14,7 +14,7 @@ export const journal: JournalPost[] = [
       "It also meant the machine had to disappear into the room rather than apologise for being there. Near silent, app-controlled, set once to a morning and evening schedule and then left alone. An object you display, not an appliance you hide.",
       "Quint Home is the answer to a simple question. If we are this careful about everything else in a room, why not the air in it.",
     ],
-    cover: "/images/vibe/vibe-18.webp",
+    cover: "/images/journal/designed-scent.webp",
     publishedAt: "2026-03-12",
     readMinutes: 4,
   },

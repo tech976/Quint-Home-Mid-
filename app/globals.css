@@ -41,12 +41,12 @@
   --text-sm: clamp(0.84rem, 0.82rem + 0.10vw, 0.90rem);
   --text-base: clamp(0.94rem, 0.92rem + 0.12vw, 1.02rem);
   --text-lg: clamp(1.05rem, 1.00rem + 0.25vw, 1.18rem);
-  --text-xl: clamp(1.20rem, 1.10rem + 0.45vw, 1.40rem);
-  --text-2xl: clamp(1.45rem, 1.30rem + 0.65vw, 1.75rem);
-  --text-3xl: clamp(1.70rem, 1.50rem + 0.90vw, 2.10rem);
-  --text-4xl: clamp(2.10rem, 1.75rem + 1.50vw, 2.80rem);
-  --text-5xl: clamp(2.30rem, 1.78rem + 2.15vw, 3.25rem);
-  --text-display: clamp(3.00rem, 2.10rem + 4.00vw, 5.25rem);
+  --text-xl: clamp(1.12rem, 1.02rem + 0.45vw, 1.40rem);
+  --text-2xl: clamp(1.32rem, 1.16rem + 0.72vw, 1.75rem);
+  --text-3xl: clamp(1.40rem, 1.26rem + 0.62vw, 1.90rem);
+  --text-4xl: clamp(1.60rem, 1.40rem + 0.90vw, 2.40rem);
+  --text-5xl: clamp(1.78rem, 1.42rem + 1.45vw, 2.80rem);
+  --text-display: clamp(2.10rem, 1.62rem + 2.35vw, 4.40rem);
 
   /* – Tracking & leading ------------------------------------ */
   --tracking-display: -0.02em;
@@ -57,8 +57,8 @@
   --leading-body: 1.65;
 
   /* – Spacing additions ------------------------------------- */
-  --spacing-section: clamp(4rem, 6vw, 9rem);
-  --spacing-section-sm: clamp(2.5rem, 4vw, 5rem);
+  --spacing-section: clamp(2.25rem, 4.5vw, 6.5rem);
+  --spacing-section-sm: clamp(1.35rem, 3vw, 3.5rem);
 
   /* – Container widths -------------------------------------- */
   --container-narrow: 56rem;

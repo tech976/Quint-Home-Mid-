@@ -18,27 +18,46 @@ type Slide =
       srcMobile?: string;
       alt: string;
       position?: string;
+      /** Overrides `position` for the phone (portrait) crop only. */
+      positionMobile?: string;
       /** Only show this slide on phones (hidden on desktop/tablet). */
       mobileOnly?: boolean;
+      /** Only show this slide on desktop/tablet (hidden on phones). */
+      desktopOnly?: boolean;
     }
   | { type: "video"; src: string; hideHeader?: boolean; desktopOnly?: boolean };
 
 const slides: Slide[] = [
   {
     type: "image",
-    src: "/images/hero-reading.webp",
-    srcMobile: "/images/hero-reading-mobile.webp",
-    alt: "A man reading in a serene living room, a Quint diffuser misting nearby",
-    position: "center 50%",
+    src: "/images/hero-first-rain.webp",
+    srcMobile: "/images/hero-first-rain-mobile.webp",
+    alt: "The Soul of the First Rain — a hand lowering the Quint First Rain oil into flower-strewn water",
+    position: "center top",
   },
-  { type: "video", src: "/videos/hero-5.mp4" },
   {
     type: "image",
-    src: "/images/hero-couple.webp",
-    srcMobile: "/images/hero-couple-mobile.webp",
-    alt: "A couple relaxing in a sunlit living room with a Quint diffuser",
+    src: "/images/hero-lounge.webp",
+    srcMobile: "/images/hero-lounge-mobile.webp",
+    alt: "A couple relaxing on a sunlit sofa with a Quint tower diffuser on the table",
     position: "center 50%",
   },
+  {
+    type: "image",
+    src: "/images/hero-clock-wireless.webp",
+    srcMobile: "/images/hero-clock-wireless-mobile.webp",
+    alt: "The Quint clock diffuser glowing 08:00 on a wooden sideboard — truly wireless",
+    position: "center 55%",
+  },
+  {
+    type: "image",
+    src: "/images/hero-terrain.webp",
+    srcMobile: "/images/hero-terrain-mobile.webp",
+    alt: "Quint Terrain oil with its raw materials — driftwood, lavender, flint, peppercorn and resin — and its top, heart and base notes",
+    position: "center",
+  },
+  { type: "video", src: "/videos/hero-deep.mp4" },
+  { type: "video", src: "/videos/hero-5.mp4" },
   { type: "video", src: "/videos/hero-3.mp4", desktopOnly: true },
   // Phone-only slides – appended after the shared slides above.
   {
@@ -86,7 +105,9 @@ export function Hero() {
   const activeSlides = useMemo(
     () =>
       isMobile
-        ? slides.filter((s) => s.type !== "video")
+        ? slides.filter(
+            (s) => s.type !== "video" && !(s.type === "image" && s.desktopOnly)
+          )
         : slides.filter((s) => !(s.type === "image" && s.mobileOnly)),
     [isMobile]
   );
@@ -150,7 +171,7 @@ export function Hero() {
   return (
     <section
       id="hero"
-      className="relative isolate flex min-h-[92svh] flex-col justify-end overflow-hidden text-[color:var(--color-white)]"
+      className="relative isolate flex aspect-[4/5] flex-col justify-end overflow-hidden text-[color:var(--color-white)] md:aspect-auto md:min-h-[92svh]"
     >
       {/* Slides (cross-fade) */}
       {activeSlides.map((s, i) => (
@@ -172,6 +193,7 @@ export function Hero() {
                   fill
                   priority={i === 0}
                   sizes="100vw"
+                  quality={90}
                   className="hidden object-cover md:block"
                   style={{ objectPosition: s.position }}
                 />
@@ -182,8 +204,9 @@ export function Hero() {
                   fill
                   priority={i === 0}
                   sizes="100vw"
+                  quality={90}
                   className="object-cover md:hidden"
-                  style={{ objectPosition: s.position }}
+                  style={{ objectPosition: s.positionMobile ?? s.position }}
                 />
               </>
             ) : (
@@ -193,6 +216,7 @@ export function Hero() {
                 fill
                 priority={i === 0}
                 sizes="100vw"
+                quality={90}
                 className="object-cover"
                 style={{ objectPosition: s.position }}
               />
@@ -265,11 +289,9 @@ export function Hero() {
 
       {/* === Bottom hairline metadata strip === */}
       <div className="relative z-20 mx-auto w-[100%] max-w-[var(--container-full)] border-t border-[color:var(--color-white)]/20 px-6 md:px-10">
-        <div className="flex flex-wrap items-center justify-between gap-x-8 gap-y-3 py-5 text-[0.6rem] uppercase tracking-[0.36em] text-[color:var(--color-white)]/75">
-          <span>Diffusers</span>
-          <span className="hidden md:inline">Fragrance Oils</span>
-          <span className="hidden md:inline">Candles</span>
-          <span>Reed Diffusers</span>
+        <div className="flex flex-col items-center gap-2 py-4 text-center text-[0.6rem] uppercase tracking-[0.28em] text-[color:var(--color-white)]/75 sm:flex-row sm:flex-wrap sm:items-center sm:justify-between sm:gap-x-8 sm:py-5 sm:text-left sm:tracking-[0.36em]">
+          <span>Electronic Waterless Diffusers</span>
+          <span>Premium Fragrance Oil Blends</span>
         </div>
       </div>
     </section>

@@ -53,7 +53,7 @@ export async function ScentLibrary() {
                   <Link
                     key={o.slug}
                     href={`/shop/${o.slug}`}
-                    className="group relative flex aspect-[4/5] w-[72%] shrink-0 snap-start flex-col justify-between overflow-hidden p-5 sm:w-[46%] lg:w-[calc((100%_-_3.5rem)/3)]"
+                    className="group relative flex aspect-[8/9] w-[72%] shrink-0 snap-start flex-col justify-between overflow-hidden p-5 sm:w-[46%] lg:w-[calc((100%_-_3.5rem)/3)]"
                     style={tileBg}
                   >
                   {photographic && (

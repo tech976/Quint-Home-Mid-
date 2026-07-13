@@ -27,7 +27,7 @@ export function SectionHeader({
       <FadeUp className="mb-10">
         <div
           className={cn(
-            "flex items-center gap-5 text-[0.62rem] uppercase tracking-[0.32em]",
+            "flex items-center gap-5 text-[0.72rem] md:text-[0.95rem] uppercase tracking-[0.16em] md:tracking-[0.22em]",
             isLight
               ? "text-[color:var(--color-stardust)]/70"
               : "text-[color:var(--color-charcoal-soft)]"

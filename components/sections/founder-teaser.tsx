@@ -26,7 +26,7 @@ export function FounderTeaser() {
                 </div>
               </figure>
               <figure>
-                <div className="relative aspect-[4/5] overflow-hidden bg-[color:var(--color-aerial-soft)]">
+                <div className="relative aspect-[8/9] overflow-hidden bg-[color:var(--color-aerial-soft)]">
                   <Image
                     src="/images/vibe/vibe-11.webp"
                     alt="A drawing room, considered"
@@ -37,7 +37,7 @@ export function FounderTeaser() {
                 </div>
               </figure>
               <figure>
-                <div className="relative aspect-[4/5] overflow-hidden bg-[color:var(--color-aerial-soft)]">
+                <div className="relative aspect-[8/9] overflow-hidden bg-[color:var(--color-aerial-soft)]">
                   <Image
                     src="/images/vibe/vibe-19.webp"
                     alt="Afternoon light across a warm wall"
@@ -52,7 +52,7 @@ export function FounderTeaser() {
 
           <div className="md:col-span-6 md:pl-2 lg:pl-8">
             <FadeUp>
-              <p className="text-[0.62rem] uppercase tracking-[0.42em] text-[color:var(--color-charcoal-soft)]">
+              <p className="text-[0.72rem] md:text-[0.95rem] uppercase tracking-[0.16em] md:tracking-[0.22em] text-[color:var(--color-charcoal-soft)]">
                 Founder · A Letter
               </p>
             </FadeUp>
