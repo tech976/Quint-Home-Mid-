@@ -28,8 +28,15 @@ type Slide =
   | { type: "video"; src: string; hideHeader?: boolean; desktopOnly?: boolean };
 
 const slides: Slide[] = [
-  // Diffuser product video leads, then images and videos alternate.
-  // (Videos are hidden on phones, so mobile leads with the lounge image.)
+  // Phones open on the Peace poster; desktop skips it and leads with the
+  // diffuser video, after which images and videos alternate.
+  {
+    type: "image",
+    src: "/images/hero-peace-mobile.webp",
+    alt: "Peace is the new luxury — the Quint Peace scent",
+    position: "center",
+    mobileOnly: true,
+  },
   { type: "video", src: "/videos/hero-3.mp4" },
   {
     type: "image",
