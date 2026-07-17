@@ -13,6 +13,8 @@ const steps: {
   img: string;
   /** Full-bleed lifestyle photo (object-cover) vs a floating cutout / app screen. */
   photo?: boolean;
+  /** Fine-tunes how large the product sits in its tile (1 = untouched). */
+  scale?: number;
 }[] = [
   {
     n: "01",
@@ -41,6 +43,7 @@ const steps: {
     body: "The diffuser follows your schedule automatically. No daily interaction required.",
     img: "/images/ritual/it-runs-itself-v2.webp",
     photo: true,
+    scale: 0.8,
   },
   {
     n: "05",
@@ -48,6 +51,7 @@ const steps: {
     body: "Top up the oil as needed; change scents by season or mood through the app.",
     img: "/images/ritual/refill-swap-v2.webp",
     photo: true,
+    scale: 1.1,
   },
 ];
 
@@ -93,6 +97,7 @@ export function HowToUse() {
                     fill
                     sizes="(min-width: 1024px) 18vw, (min-width: 640px) 45vw, 100vw"
                     className={s.photo ? "object-cover" : "object-contain"}
+                    style={s.scale ? { transform: `scale(${s.scale})` } : undefined}
                   />
                 </div>
                 {/* Text below */}
