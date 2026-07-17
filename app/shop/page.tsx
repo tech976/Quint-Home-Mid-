@@ -114,7 +114,6 @@ export default async function ShopPage() {
                     />
                     <div className="absolute inset-x-0 top-0 flex items-start justify-between p-5 text-[0.6rem] uppercase tracking-[0.32em] text-[color:var(--color-stardust)] md:p-6">
                       <span>№{String(i + 1).padStart(2, "0")}</span>
-                      <span>{d.tier === "premium" ? "Premium" : "Entry"}</span>
                     </div>
                     <div className="absolute inset-x-0 bottom-0 flex items-end justify-between p-5 text-[0.6rem] uppercase tracking-[0.32em] text-[color:var(--color-stardust)] md:p-6">
                       <span>{d.coverageLabel}</span>
