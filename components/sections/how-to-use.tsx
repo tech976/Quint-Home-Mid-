@@ -15,6 +15,8 @@ const steps: {
   photo?: boolean;
   /** Fine-tunes how large the product sits in its tile (1 = untouched). */
   scale?: number;
+  /** Nudges the product down (+) or up (-) inside its tile, e.g. "5%". */
+  offsetY?: string;
 }[] = [
   {
     n: "01",
@@ -44,6 +46,7 @@ const steps: {
     img: "/images/ritual/it-runs-itself-v2.webp",
     photo: true,
     scale: 0.8,
+    offsetY: "5%",
   },
   {
     n: "05",
@@ -97,7 +100,19 @@ export function HowToUse() {
                     fill
                     sizes="(min-width: 1024px) 18vw, (min-width: 640px) 45vw, 100vw"
                     className={s.photo ? "object-cover" : "object-contain"}
-                    style={s.scale ? { transform: `scale(${s.scale})` } : undefined}
+                    style={
+                      s.scale || s.offsetY
+                        ? {
+                            // translate first (unscaled units), then scale
+                            transform: [
+                              s.offsetY && `translateY(${s.offsetY})`,
+                              s.scale && `scale(${s.scale})`,
+                            ]
+                              .filter(Boolean)
+                              .join(" "),
+                          }
+                        : undefined
+                    }
                   />
                 </div>
                 {/* Text below */}
