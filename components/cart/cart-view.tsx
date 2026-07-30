@@ -5,11 +5,15 @@ import { useCart } from "./cart-provider";
 import { formatINR } from "@/lib/utils";
 import { FadeUp } from "@/components/motion/fade-up";
 import { Monogram } from "@/components/brand/logo";
+import { FREE_SHIPPING_FROM } from "@/lib/checkout-config";
 
-/** Complimentary shipping kicks in above this subtotal (see /shipping). */
-const FREE_SHIPPING_FROM = 5000;
-
-export function CartView() {
+export function CartView({
+  headlessCheckout = false,
+}: {
+  /** True once PayU + the Shopify Admin API are configured; until then the
+   *  bag keeps handing off to the Shopify-hosted checkout. */
+  headlessCheckout?: boolean;
+}) {
   const { cart, update, remove, pending } = useCart();
   const lines = cart?.lines ?? [];
   const subtotal = cart?.subtotal ?? 0;
@@ -242,18 +246,30 @@ export function CartView() {
               </p>
             )}
 
-            {/* Checkout hand-off. Today this is the Shopify-hosted checkout;
-                swap this href for the PayU payment route when that lands. */}
-            <a
-              href={cart?.checkoutUrl ?? "#"}
-              aria-disabled={!cart?.checkoutUrl}
-              className="group mt-7 flex items-center justify-center gap-3 bg-[color:var(--color-charcoal)] px-8 py-4 text-[0.74rem] uppercase tracking-[0.32em] text-[color:var(--color-ivory)] transition-colors duration-500 hover:bg-[color:var(--color-clay-deep)]"
-            >
-              Proceed to checkout
-              <span className="transition-transform duration-500 group-hover:translate-x-1">
-                →
-              </span>
-            </a>
+            {/* Checkout hand-off: our own checkout + PayU once configured,
+                otherwise the Shopify-hosted checkout. */}
+            {headlessCheckout ? (
+              <Link
+                href="/checkout"
+                className="group mt-7 flex items-center justify-center gap-3 bg-[color:var(--color-charcoal)] px-8 py-4 text-[0.74rem] uppercase tracking-[0.32em] text-[color:var(--color-ivory)] transition-colors duration-500 hover:bg-[color:var(--color-clay-deep)]"
+              >
+                Proceed to checkout
+                <span className="transition-transform duration-500 group-hover:translate-x-1">
+                  →
+                </span>
+              </Link>
+            ) : (
+              <a
+                href={cart?.checkoutUrl ?? "#"}
+                aria-disabled={!cart?.checkoutUrl}
+                className="group mt-7 flex items-center justify-center gap-3 bg-[color:var(--color-charcoal)] px-8 py-4 text-[0.74rem] uppercase tracking-[0.32em] text-[color:var(--color-ivory)] transition-colors duration-500 hover:bg-[color:var(--color-clay-deep)]"
+              >
+                Proceed to checkout
+                <span className="transition-transform duration-500 group-hover:translate-x-1">
+                  →
+                </span>
+              </a>
+            )}
 
             <p className="mt-5 text-[0.75rem] leading-[1.65] text-[color:var(--color-charcoal-soft)]">
               Taxes are calculated at checkout. A tracking link is emailed to

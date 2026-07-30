@@ -10,7 +10,8 @@ import {
   type Cart,
 } from "@/lib/shopify/cart";
 
-const COOKIE = "quint_cart_id";
+import { CART_COOKIE as COOKIE } from "@/lib/shopify/cart-cookie";
+
 const MAX_AGE = 60 * 60 * 24 * 14; // 14 days
 
 async function readCartId(): Promise<string | undefined> {
