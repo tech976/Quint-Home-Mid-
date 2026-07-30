@@ -5,7 +5,8 @@ import { useCart } from "./cart-provider";
 import { formatINR } from "@/lib/utils";
 
 export function CartDrawer() {
-  const { cart, open, setOpen, update, remove, pending } = useCart();
+  const { cart, open, setOpen, update, remove, pending, headlessCheckout } =
+    useCart();
   const lines = cart?.lines ?? [];
 
   return (
@@ -126,15 +127,30 @@ export function CartDrawer() {
               <p className="mt-1.5 text-[0.7rem] leading-[1.5] text-[color:var(--color-charcoal-soft)]">
                 Shipping &amp; taxes calculated at checkout.
               </p>
-              <a
-                href={cart?.checkoutUrl ?? "#"}
-                className="group mt-4 flex items-center justify-center gap-3 bg-[color:var(--color-charcoal)] px-8 py-4 text-[0.74rem] uppercase tracking-[0.32em] text-[color:var(--color-ivory)] transition-colors duration-500 hover:bg-[color:var(--color-clay-deep)]"
-              >
-                Checkout
-                <span className="transition-transform duration-500 group-hover:translate-x-1">
-                  →
-                </span>
-              </a>
+              {/* Our own checkout once payments are wired up, otherwise the
+                  Shopify-hosted one. */}
+              {headlessCheckout ? (
+                <Link
+                  href="/checkout"
+                  onClick={() => setOpen(false)}
+                  className="group mt-4 flex items-center justify-center gap-3 bg-[color:var(--color-charcoal)] px-8 py-4 text-[0.74rem] uppercase tracking-[0.32em] text-[color:var(--color-ivory)] transition-colors duration-500 hover:bg-[color:var(--color-clay-deep)]"
+                >
+                  Checkout
+                  <span className="transition-transform duration-500 group-hover:translate-x-1">
+                    →
+                  </span>
+                </Link>
+              ) : (
+                <a
+                  href={cart?.checkoutUrl ?? "#"}
+                  className="group mt-4 flex items-center justify-center gap-3 bg-[color:var(--color-charcoal)] px-8 py-4 text-[0.74rem] uppercase tracking-[0.32em] text-[color:var(--color-ivory)] transition-colors duration-500 hover:bg-[color:var(--color-clay-deep)]"
+                >
+                  Checkout
+                  <span className="transition-transform duration-500 group-hover:translate-x-1">
+                    →
+                  </span>
+                </a>
+              )}
               <Link
                 href="/cart"
                 onClick={() => setOpen(false)}

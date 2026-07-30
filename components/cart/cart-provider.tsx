@@ -21,6 +21,9 @@ interface CartContextValue {
   count: number;
   open: boolean;
   pending: boolean;
+  /** True once PayU + the Shopify Admin API are configured: checkout then runs
+   *  on our own /checkout instead of the Shopify-hosted one. */
+  headlessCheckout: boolean;
   setOpen: (v: boolean) => void;
   add: (merchandiseId: string, quantity?: number) => void;
   update: (lineId: string, quantity: number) => void;
@@ -29,7 +32,13 @@ interface CartContextValue {
 
 const CartContext = createContext<CartContextValue | null>(null);
 
-export function CartProvider({ children }: { children: React.ReactNode }) {
+export function CartProvider({
+  children,
+  headlessCheckout = false,
+}: {
+  children: React.ReactNode;
+  headlessCheckout?: boolean;
+}) {
   const [cart, setCart] = useState<Cart | null>(null);
   const [open, setOpen] = useState(false);
   const [pending, startTransition] = useTransition();
@@ -76,7 +85,17 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 
   return (
     <CartContext.Provider
-      value={{ cart, count, open, pending, setOpen, add, update, remove }}
+      value={{
+        cart,
+        count,
+        open,
+        pending,
+        headlessCheckout,
+        setOpen,
+        add,
+        update,
+        remove,
+      }}
     >
       {children}
     </CartContext.Provider>

@@ -7,14 +7,10 @@ import { FadeUp } from "@/components/motion/fade-up";
 import { Monogram } from "@/components/brand/logo";
 import { FREE_SHIPPING_FROM } from "@/lib/checkout-config";
 
-export function CartView({
-  headlessCheckout = false,
-}: {
-  /** True once PayU + the Shopify Admin API are configured; until then the
-   *  bag keeps handing off to the Shopify-hosted checkout. */
-  headlessCheckout?: boolean;
-}) {
-  const { cart, update, remove, pending } = useCart();
+export function CartView() {
+  // headlessCheckout comes from the provider (set in the root layout) so the
+  // bag and the drawer can never disagree about where checkout goes.
+  const { cart, update, remove, pending, headlessCheckout } = useCart();
   const lines = cart?.lines ?? [];
   const subtotal = cart?.subtotal ?? 0;
   const freeShipping = subtotal >= FREE_SHIPPING_FROM;

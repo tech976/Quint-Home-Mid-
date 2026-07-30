@@ -9,6 +9,8 @@ import { Grain } from "@/components/atmosphere/grain";
 import { ImageGuard } from "@/components/atmosphere/image-guard";
 import { CartProvider } from "@/components/cart/cart-provider";
 import { CartDrawer } from "@/components/cart/cart-drawer";
+import { payuConfigured } from "@/lib/payu/client";
+import { shopifyAdminConfigured } from "@/lib/shopify/admin";
 
 export const metadata: Metadata = {
   title: {
@@ -39,7 +41,11 @@ export default function RootLayout({
         suppressHydrationWarning
         className="flex min-h-screen flex-col bg-[color:var(--color-white)] text-[color:var(--color-charcoal)]"
       >
-        <CartProvider>
+        {/* Checkout only moves off Shopify once payment *and* order creation
+            are both configured — see docs/payu-checkout.md. */}
+        <CartProvider
+          headlessCheckout={payuConfigured && shopifyAdminConfigured}
+        >
           <LenisProvider />
           <ImageGuard />
           <Grain />
