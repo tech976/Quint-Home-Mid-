@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useCart } from "./cart-provider";
 import { formatINR } from "@/lib/utils";
 
@@ -134,6 +135,13 @@ export function CartDrawer() {
                   →
                 </span>
               </a>
+              <Link
+                href="/cart"
+                onClick={() => setOpen(false)}
+                className="mt-3 block text-center text-[0.68rem] uppercase tracking-[0.28em] text-[color:var(--color-charcoal-soft)] underline-offset-4 transition-colors hover:text-[color:var(--color-charcoal)] hover:underline"
+              >
+                View full bag
+              </Link>
               <p className="mt-3 text-center text-[0.7rem] leading-[1.5] text-[color:var(--color-charcoal-soft)]">
                 A tracking link is emailed to you once your order ships.
               </p>
