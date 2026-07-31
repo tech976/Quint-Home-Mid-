@@ -59,6 +59,10 @@ async function probeAdminApi() {
     checked: true,
     restShopJson: rest, // 200 = REST usable, 401 = bad token, 403/404 = REST blocked
     graphql,
+    // Admin API access tokens are prefixed `shpat_`. A Client Secret or Client
+    // ID pasted here by mistake fails this check and explains a flat 401.
+    tokenLooksLikeAdminToken: token.startsWith("shpat_"),
+    tokenLength: token.length,
   };
 }
 
