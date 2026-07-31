@@ -9,7 +9,9 @@ import {
   OAUTH_STATE_COOKIE,
   exchangeCodeForToken,
   isExpectedShop,
+  normalizeShop,
   oauthConfigured,
+  shopDomain,
   verifyHmac,
 } from "@/lib/shopify/oauth";
 
@@ -46,7 +48,16 @@ export async function GET(request: NextRequest) {
 
   // 1. Must be the shop this deployment belongs to.
   if (!isExpectedShop(shop)) {
-    return page("Wrong shop", "<h1>Unexpected shop</h1><p>This callback is only valid for the configured store.</p>", 400);
+    // Shop domains are public, so naming both sides here is safe and saves a
+    // round of guesswork.
+    return page(
+      "Wrong shop",
+      `<h1>Unexpected shop</h1>
+       <p>Shopify sent: <code>${esc(normalizeShop(shop) || "(none)")}</code></p>
+       <p>This deployment expects: <code>${esc(normalizeShop(shopDomain()) || "(unset)")}</code></p>
+       <p>Set <code>SHOPIFY_STORE_DOMAIN</code> in Vercel to the value Shopify sent, then redeploy.</p>`,
+      400
+    );
   }
 
   // 2. Shopify's signature must check out.

@@ -52,9 +52,21 @@ export function verifyHmac(params: URLSearchParams): boolean {
   return a.length === b.length && crypto.timingSafeEqual(a, b);
 }
 
+/** Domains get written with a protocol or a trailing slash often enough that a
+ *  literal comparison rejects perfectly valid values. */
+export function normalizeShop(value: string | null | undefined): string {
+  return (value ?? "")
+    .trim()
+    .toLowerCase()
+    .replace(/^https?:\/\//, "")
+    .replace(/\/+$/, "");
+}
+
 /** Only ever talk to the shop this deployment is configured for. */
 export function isExpectedShop(shop: string | null): boolean {
-  return Boolean(shop) && shop === shopDomain();
+  const a = normalizeShop(shop);
+  const b = normalizeShop(shopDomain());
+  return a.length > 0 && a === b;
 }
 
 /** Exchanges the one-time code for a permanent offline access token. */
