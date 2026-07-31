@@ -12,6 +12,7 @@ export function CartDrawer() {
   return (
     <div
       aria-hidden={!open}
+      data-site-chrome
       className={`fixed inset-0 z-[100] ${open ? "" : "pointer-events-none"}`}
     >
       {/* Scrim */}
