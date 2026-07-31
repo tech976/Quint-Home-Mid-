@@ -16,10 +16,18 @@ export function ComingSoon() {
         html, body { overflow: hidden; background: #140d07; }
       `}</style>
 
-      {/* The artwork is 16:9. Filling a tall phone screen would crop the
-          wordmark, so phones show it whole against the artwork's own edge
-          colour; wider screens fill the viewport. */}
       <div className="fixed inset-0 z-[300] bg-[#140d07]">
+        {/* Phones get the portrait cut, wider screens the landscape one, so
+            neither has to letterbox or crop the wordmark. */}
+        <Image
+          src="/images/coming-soon-mobile.webp"
+          alt="Quint Home — something extraordinary is on its way. Stay tuned."
+          fill
+          priority
+          quality={90}
+          sizes="100vw"
+          className="object-cover md:hidden"
+        />
         <Image
           src="/images/coming-soon.webp"
           alt="Quint Home — something extraordinary is on its way. Stay tuned."
@@ -27,7 +35,7 @@ export function ComingSoon() {
           priority
           quality={90}
           sizes="100vw"
-          className="object-contain md:object-cover"
+          className="hidden object-cover md:block"
         />
       </div>
     </>
