@@ -20,10 +20,16 @@ export async function GET() {
     !adminToken && "SHOPIFY_ADMIN_TOKEN",
   ].filter(Boolean);
 
+  // Names only — never values. A typo'd key shows up here immediately.
+  const relatedKeys = Object.keys(process.env)
+    .filter((k) => k.startsWith("SHOPIFY") || k.startsWith("PAYU"))
+    .sort();
+
   return NextResponse.json(
     {
       headlessCheckout,
       checkoutGoesTo: headlessCheckout ? "/checkout (PayU)" : "Shopify checkout",
+      shopifyAndPayuKeysVisibleToThisBuild: relatedKeys,
       present: {
         PAYU_MERCHANT_KEY: payuKey,
         PAYU_MERCHANT_SALT: payuSalt,
