@@ -10,7 +10,7 @@ import { PairBundle, type PairOption } from "@/components/product/pair-bundle";
 import { oils, oilNoteSummary } from "@/lib/data/oils";
 import { cn } from "@/lib/utils";
 import type { Diffuser } from "@/lib/types";
-import type { ShopifyCommerce } from "@/lib/shopify/commerce";
+import { shopifyHandle, type ShopifyCommerce } from "@/lib/shopify/commerce";
 
 /**
  * Diffuser PDP – images on the left (sticky), and a single right column. The
@@ -22,9 +22,12 @@ import type { ShopifyCommerce } from "@/lib/shopify/commerce";
 export function DiffuserHero({
   product,
   commerce,
+  commerceMap,
 }: {
   product: Diffuser;
   commerce?: ShopifyCommerce;
+  /** Whole catalogue, so bundle partners can resolve their Shopify variant. */
+  commerceMap?: Record<string, ShopifyCommerce>;
 }) {
   const colors = product.colors;
   const [active, setActive] = useState(0);
@@ -59,6 +62,7 @@ export function DiffuserHero({
     name: o.name,
     priceINR: o.priceINR,
     image: o.image,
+    variantId: commerceMap?.[shopifyHandle(o.name)]?.variants[0]?.id,
     meta: o.mood,
     note: oilNoteSummary(o),
   }));
@@ -284,6 +288,7 @@ export function DiffuserHero({
               <PairBundle
                 basePriceINR={product.priceINR}
                 baseName={product.name}
+                baseVariantId={variant?.id}
                 partnerNoun="oil"
                 heading="Add another oil"
                 options={oilOptions}

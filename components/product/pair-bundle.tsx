@@ -3,12 +3,15 @@
 import { useState } from "react";
 import Image from "next/image";
 import { formatINR } from "@/lib/utils";
+import { useCart } from "@/components/cart/cart-provider";
 
 export interface PairOption {
   slug: string;
   name: string;
   priceINR: number;
   image: string;
+  /** Shopify variant id — without it the option cannot be added to the bag. */
+  variantId?: string;
   /** Small supporting line, e.g. coverage or scent family. */
   meta?: string;
   /** Scent-note summary shown in the option label and under the picker. */
@@ -20,12 +23,18 @@ interface Props {
   basePriceINR: number;
   /** What the base product is called in the running total, e.g. "Plug-In Diffuser". */
   baseName: string;
+  /** Shopify variant of the product whose page we're on. */
+  baseVariantId?: string;
   /** Noun for the thing being added, lowercase singular: "diffuser" | "oil". */
   partnerNoun: string;
   /** Headline above the picker. */
   heading: string;
   options: PairOption[];
-  /** Discount applied to the added item when bundled. Default 10%. */
+  /**
+   * Bundle saving to advertise. Defaults to 0 — the discount shown here must
+   * match a real Shopify automatic discount, otherwise the bag would total
+   * more than the page promised. Set it only once that discount exists.
+   */
   discountRate?: number;
 }
 
@@ -37,13 +46,15 @@ interface Props {
 export function PairBundle({
   basePriceINR,
   baseName,
+  baseVariantId,
   partnerNoun,
   heading,
   options,
-  discountRate = 0.1,
+  discountRate = 0,
 }: Props) {
   const [paired, setPaired] = useState(false);
   const [slug, setSlug] = useState(options[0]?.slug ?? "");
+  const { add, pending } = useCart();
 
   const partner = options.find((o) => o.slug === slug) ?? options[0];
   const partnerFull = partner?.priceINR ?? 0;
@@ -67,13 +78,16 @@ export function PairBundle({
         <span className="flex min-w-0 flex-1 flex-col">
           <span className="flex items-center gap-3 text-[0.95rem]">
             {heading}
-            <span className="rounded-full bg-[color:var(--color-clay)] px-2 py-0.5 text-[0.56rem] uppercase tracking-[0.24em] text-[color:var(--color-ivory)]">
-              −{Math.round(discountRate * 100)}%
-            </span>
+            {discountRate > 0 && (
+              <span className="rounded-full bg-[color:var(--color-clay)] px-2 py-0.5 text-[0.56rem] uppercase tracking-[0.24em] text-[color:var(--color-ivory)]">
+                −{Math.round(discountRate * 100)}%
+              </span>
+            )}
           </span>
           <span className="mt-1 text-[0.78rem] leading-[1.5] text-[color:var(--color-charcoal-soft)]">
-            Add {article} {partnerNoun} to your order and save{" "}
-            {formatINR(saving)} on it.
+            {discountRate > 0
+              ? `Add ${article} ${partnerNoun} to your order and save ${formatINR(saving)} on it.`
+              : `Add ${article} ${partnerNoun} to your order.`}
           </span>
         </span>
       </label>
@@ -155,9 +169,15 @@ export function PairBundle({
               a button and never looks stretched. */}
           <button
             type="button"
-            className="group mt-4 flex h-12 w-[100%] items-center justify-center gap-2.5 border border-[color:var(--color-charcoal)] px-6 text-[0.68rem] uppercase tracking-[0.26em] text-[color:var(--color-charcoal)] transition-colors duration-500 hover:bg-[color:var(--color-charcoal)] hover:text-[color:var(--color-ivory)]"
+            disabled={pending || !baseVariantId || !partner?.variantId}
+            onClick={() => {
+              // Both items go in: the running total above quotes the pair.
+              if (baseVariantId) add(baseVariantId);
+              if (partner?.variantId) add(partner.variantId);
+            }}
+            className="group mt-4 flex h-12 w-[100%] items-center justify-center gap-2.5 border border-[color:var(--color-charcoal)] px-6 text-[0.68rem] uppercase tracking-[0.26em] text-[color:var(--color-charcoal)] transition-colors duration-500 hover:bg-[color:var(--color-charcoal)] hover:text-[color:var(--color-ivory)] disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:bg-transparent disabled:hover:text-[color:var(--color-charcoal)]"
           >
-            <span>Add bundle to bag</span>
+            <span>{pending ? "Adding…" : "Add bundle to bag"}</span>
             <span className="transition-transform duration-500 group-hover:translate-x-1">
               →
             </span>

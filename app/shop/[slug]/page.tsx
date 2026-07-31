@@ -9,7 +9,7 @@ import { FadeUp } from "@/components/motion/fade-up";
 import { DiffuserHero } from "@/components/product/diffuser-hero";
 import { DiffuserCompare } from "@/components/sections/diffuser-compare";
 import { OilHero } from "@/components/product/oil-hero";
-import { getCommerceByName } from "@/lib/shopify/commerce";
+import { getCommerceByName, getCommerceMap } from "@/lib/shopify/commerce";
 import { ScentFinder } from "@/components/sections/scent-finder";
 import type { FragranceOil } from "@/lib/types";
 
@@ -74,11 +74,12 @@ export default async function ProductPage({
     .slice(0, 4);
 
   const commerce = await getCommerceByName(product.name);
+  const commerceMap = await getCommerceMap();
 
   return (
     <article id="top" className="bg-[color:var(--color-white)]">
       {/* §  PRODUCT  –  images left; overview, key features & technical specs on the right */}
-      <DiffuserHero product={product} commerce={commerce} />
+      <DiffuserHero product={product} commerce={commerce} commerceMap={commerceMap} />
 
       {/* §  COMPARE  –  this device against the rest of the range */}
       <DiffuserCompare highlightModel={product.model} />
@@ -185,11 +186,12 @@ async function OilProductPage({ oil }: { oil: FragranceOil }) {
   const pairDiffusers = diffusers.slice(0, 4);
 
   const commerce = await getCommerceByName(oil.name);
+  const commerceMap = await getCommerceMap();
 
   return (
     <article id="top" className="bg-[color:var(--color-white)]">
       {/* §  PRODUCT – gallery + buy box + bundle */}
-      <OilHero oil={oil} commerce={commerce} />
+      <OilHero oil={oil} commerce={commerce} commerceMap={commerceMap} />
 
       {/* §  FIND YOUR SCENT */}
       <ScentFinder />

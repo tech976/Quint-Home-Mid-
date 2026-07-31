@@ -9,7 +9,7 @@ import { MobileBuyBar } from "@/components/product/mobile-buy-bar";
 import { PairBundle, type PairOption } from "@/components/product/pair-bundle";
 import { diffusers } from "@/lib/data/diffusers";
 import type { FragranceOil } from "@/lib/types";
-import type { ShopifyCommerce } from "@/lib/shopify/commerce";
+import { shopifyHandle, type ShopifyCommerce } from "@/lib/shopify/commerce";
 
 /**
  * Oil PDP – bottle study on the left (sticky), and a single right column that
@@ -19,9 +19,12 @@ import type { ShopifyCommerce } from "@/lib/shopify/commerce";
 export function OilHero({
   oil,
   commerce,
+  commerceMap,
 }: {
   oil: FragranceOil;
   commerce?: ShopifyCommerce;
+  /** Whole catalogue, so bundle partners can resolve their Shopify variant. */
+  commerceMap?: Record<string, ShopifyCommerce>;
 }) {
   const variant = commerce?.variants[0];
   // Pair-with-a-diffuser options for the bundle control.
@@ -30,6 +33,7 @@ export function OilHero({
     name: d.name,
     priceINR: d.priceINR,
     image: d.image,
+    variantId: commerceMap?.[shopifyHandle(d.name)]?.variants[0]?.id,
     meta: d.coverageLabel,
   }));
 
@@ -186,6 +190,7 @@ export function OilHero({
               <PairBundle
                 basePriceINR={oil.priceINR}
                 baseName={oil.name}
+                baseVariantId={variant?.id}
                 partnerNoun="diffuser"
                 heading="Add a diffuser"
                 options={diffuserOptions}
