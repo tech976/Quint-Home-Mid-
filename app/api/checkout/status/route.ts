@@ -9,11 +9,66 @@ import { shopifyAdminConfigured } from "@/lib/shopify/admin";
 
 export const dynamic = "force-dynamic";
 
+/**
+ * Harmless probe: can this token actually reach the Admin API, and does the
+ * REST endpoint we use for order creation still exist for this app? Returns
+ * status codes only — no shop or customer data.
+ */
+async function probeAdminApi() {
+  const domain = process.env.SHOPIFY_STORE_DOMAIN;
+  const token = process.env.SHOPIFY_ADMIN_TOKEN;
+  const version = process.env.SHOPIFY_API_VERSION || "2024-10";
+  if (!domain || !token) return { checked: false };
+
+  const call = async (path: string) => {
+    try {
+      const r = await fetch(`https://${domain}/admin/api/${version}/${path}`, {
+        headers: { "X-Shopify-Access-Token": token },
+        cache: "no-store",
+      });
+      return r.status;
+    } catch {
+      return "network-error";
+    }
+  };
+
+  const [rest, graphql] = await Promise.all([
+    call("shop.json"),
+    (async () => {
+      try {
+        const r = await fetch(
+          `https://${domain}/admin/api/${version}/graphql.json`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "X-Shopify-Access-Token": token,
+            },
+            body: JSON.stringify({ query: "{ shop { name } }" }),
+            cache: "no-store",
+          }
+        );
+        return r.status;
+      } catch {
+        return "network-error";
+      }
+    })(),
+  ]);
+
+  return {
+    checked: true,
+    restShopJson: rest, // 200 = REST usable, 401 = bad token, 403/404 = REST blocked
+    graphql,
+  };
+}
+
 export async function GET() {
   const payuKey = Boolean(process.env.PAYU_MERCHANT_KEY);
   const payuSalt = Boolean(process.env.PAYU_MERCHANT_SALT);
   const adminToken = Boolean(process.env.SHOPIFY_ADMIN_TOKEN);
   const headlessCheckout = payuConfigured && shopifyAdminConfigured;
+
+  const adminApi = await probeAdminApi();
 
   const missing = [
     !payuKey && "PAYU_MERCHANT_KEY",
@@ -37,6 +92,7 @@ export async function GET() {
       payuKeyPrefix: process.env.PAYU_MERCHANT_KEY
         ? `${process.env.PAYU_MERCHANT_KEY.slice(0, 3)}… (len ${process.env.PAYU_MERCHANT_KEY.length})`
         : null,
+      adminApi,
       payuSaltFingerprint: process.env.PAYU_MERCHANT_SALT
         ? crypto
             .createHash("sha256")
