@@ -82,7 +82,14 @@ export async function GET() {
 
   // Names only — never values. A typo'd key shows up here immediately.
   const relatedKeys = Object.keys(process.env)
-    .filter((k) => k.startsWith("SHOPIFY") || k.startsWith("PAYU"))
+    .filter(
+      (k) =>
+        k.startsWith("SHOPIFY") ||
+        k.startsWith("PAYU") ||
+        // catch a differently-named client id / secret
+        /CLIENT|API_KEY|APIKEY|SECRET/i.test(k)
+    )
+    .filter((k) => !/^(npm_|NEXT_RUNTIME|VERCEL_|AWS_)/.test(k))
     .sort();
 
   return NextResponse.json(
