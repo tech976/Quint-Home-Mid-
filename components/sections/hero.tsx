@@ -29,7 +29,7 @@ type Slide =
 
 const slides: Slide[] = [
   // Phones open on the Peace poster; desktop skips it and leads with the
-  // diffuser video, after which images and videos alternate.
+  // diffuser cutaway, the only video in the rotation.
   {
     type: "image",
     src: "/images/hero-peace-mobile.webp",
@@ -45,14 +45,12 @@ const slides: Slide[] = [
     alt: "A couple relaxing on a sunlit sofa with a Quint tower diffuser on the table",
     position: "center 50%",
   },
-  { type: "video", src: "/videos/hero-deep.mp4" },
   {
     type: "image",
     src: "/images/hero-clock-wireless.webp",
     alt: "The Quint clock diffuser glowing 08:00 on a wooden sideboard",
     position: "center 55%",
   },
-  { type: "video", src: "/videos/hero-5.mp4" },
   // Phone-only slides – appended after the shared slides above.
   {
     type: "image",
@@ -98,10 +96,10 @@ export function Hero() {
 
   const activeSlides = useMemo(
     () =>
+      // Video plays on phones too — only slides explicitly marked for one
+      // breakpoint are dropped.
       isMobile
-        ? slides.filter(
-            (s) => s.type !== "video" && !(s.type === "image" && s.desktopOnly)
-          )
+        ? slides.filter((s) => !s.desktopOnly)
         : slides.filter((s) => !(s.type === "image" && s.mobileOnly)),
     [isMobile]
   );
