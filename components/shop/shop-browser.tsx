@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Monogram } from "@/components/brand/logo";
@@ -54,6 +54,15 @@ const INDEX: SearchItem[] = [
 export function ShopBrowser() {
   const [soon, setSoon] = useState(false);
   const [query, setQuery] = useState("");
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  // Arriving from the header's search button (which links to #browse) should
+  // land with the cursor already in the field, not just scrolled near it.
+  useEffect(() => {
+    if (window.location.hash !== "#browse") return;
+    const t = setTimeout(() => inputRef.current?.focus(), 400);
+    return () => clearTimeout(t);
+  }, []);
 
   const q = query.trim().toLowerCase();
   const results = q
@@ -106,6 +115,8 @@ export function ShopBrowser() {
               ⌕
             </span>
             <input
+              ref={inputRef}
+              id="product-search"
               type="search"
               value={query}
               onChange={(e) => setQuery(e.target.value)}

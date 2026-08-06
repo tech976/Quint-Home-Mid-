@@ -215,13 +215,15 @@ export function Header() {
                 </Link>
               ))}
             </nav>
-            <button
-              type="button"
-              aria-label="Search"
+            {/* Takes you to the catalogue search on the range page, with the
+                field already focused. */}
+            <Link
+              href="/range#browse"
+              aria-label="Search products"
               className="hidden transition-colors duration-300 hover:text-[color:var(--color-clay)] md:block"
             >
               <Search className="h-[18px] w-[18px]" />
-            </button>
+            </Link>
             <button
               type="button"
               onClick={() => setCartOpen(true)}
