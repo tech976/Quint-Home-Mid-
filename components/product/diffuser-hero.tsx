@@ -211,6 +211,11 @@ export function DiffuserHero({
                 subscribeOffer={false}
                 variantId={variant?.id}
                 available={variant?.available ?? true}
+                // The included scent is chosen on this page, so it has to travel
+                // with the line — otherwise the order never records which one.
+                attributes={[
+                  { key: "Included oil", value: selectedOil.name },
+                ]}
               />
             </div>
           </FadeUp>

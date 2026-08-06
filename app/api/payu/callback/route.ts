@@ -121,6 +121,7 @@ export async function POST(request: NextRequest) {
       lines: cart.lines.map((l) => ({
         merchandiseId: l.merchandiseId,
         quantity: l.quantity,
+        attributes: l.attributes,
       })),
       customer: pending.customer,
       amountPaid: paid,

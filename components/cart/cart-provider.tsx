@@ -25,7 +25,11 @@ interface CartContextValue {
    *  on our own /checkout instead of the Shopify-hosted one. */
   headlessCheckout: boolean;
   setOpen: (v: boolean) => void;
-  add: (merchandiseId: string, quantity?: number) => void;
+  add: (
+    merchandiseId: string,
+    quantity?: number,
+    attributes?: { key: string; value: string }[]
+  ) => void;
   update: (lineId: string, quantity: number) => void;
   remove: (lineId: string) => void;
 }
@@ -48,16 +52,23 @@ export function CartProvider({
     getCartAction().then((c) => c && setCart(c)).catch(() => {});
   }, []);
 
-  const add = useCallback((merchandiseId: string, quantity = 1) => {
+  const add = useCallback(
+    (
+      merchandiseId: string,
+      quantity = 1,
+      attributes?: { key: string; value: string }[]
+    ) => {
     setOpen(true);
     startTransition(async () => {
       try {
-        setCart(await addToCartAction(merchandiseId, quantity));
+        setCart(await addToCartAction(merchandiseId, quantity, attributes));
       } catch (e) {
         console.error("add to cart failed", e);
       }
     });
-  }, []);
+    },
+    []
+  );
 
   const update = useCallback((lineId: string, quantity: number) => {
     startTransition(async () => {

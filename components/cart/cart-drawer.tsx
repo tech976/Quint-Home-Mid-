@@ -74,6 +74,14 @@ export function CartDrawer() {
                         {l.variantTitle}
                       </p>
                     )}
+                    {l.attributes?.map((a) => (
+                      <p
+                        key={a.key}
+                        className="mt-0.5 text-[0.72rem] text-[color:var(--color-charcoal-soft)]"
+                      >
+                        {a.key}: {a.value}
+                      </p>
+                    ))}
                     <div className="mt-auto flex items-center justify-between pt-2">
                       <div className="flex items-center border border-[color:var(--color-rule)]">
                         <button

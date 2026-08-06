@@ -24,6 +24,8 @@ export function numericId(gid: string): number | null {
 export interface OrderLine {
   merchandiseId: string; // Storefront GID
   quantity: number;
+  /** Buyer choices, e.g. the included oil — recorded on the order line. */
+  attributes?: { key: string; value: string }[];
 }
 
 export interface OrderCustomer {
@@ -72,8 +74,19 @@ export async function createPaidOrder(
   }
 
   const line_items = input.lines
-    .map((l) => ({ variant_id: numericId(l.merchandiseId), quantity: l.quantity }))
-    .filter((l): l is { variant_id: number; quantity: number } => l.variant_id !== null);
+    .map((l) => ({
+      variant_id: numericId(l.merchandiseId),
+      quantity: l.quantity,
+      // Shopify shows these as line-item properties on the order.
+      properties: (l.attributes ?? []).map((a) => ({ name: a.key, value: a.value })),
+    }))
+    .filter(
+      (l): l is {
+        variant_id: number;
+        quantity: number;
+        properties: { name: string; value: string }[];
+      } => l.variant_id !== null
+    );
 
   if (line_items.length === 0) {
     throw new Error("Cannot create a Shopify order with no resolvable line items.");
@@ -154,4 +167,50 @@ export async function createPaidOrder(
     throw new Error(`Shopify Admin returned no order: ${body.slice(0, 500)}`);
   }
   return { id: json.order.id, name: json.order.name };
+}
+
+/**
+ * Adds a newsletter subscriber as a Shopify customer with marketing consent, so
+ * the list lives with everything else rather than in a separate tool.
+ *
+ * Returns "subscribed" for a new signup and "already" when Shopify reports the
+ * address is taken — from the visitor's side both are a success.
+ */
+export async function subscribeToNewsletter(
+  email: string
+): Promise<"subscribed" | "already"> {
+  if (!shopifyAdminConfigured) {
+    throw new Error("Shopify Admin API is not configured.");
+  }
+
+  const res = await fetch(
+    `https://${DOMAIN}/admin/api/${VERSION}/customers.json`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-Shopify-Access-Token": ADMIN_TOKEN as string,
+      },
+      body: JSON.stringify({
+        customer: {
+          email,
+          tags: "newsletter",
+          email_marketing_consent: {
+            state: "subscribed",
+            opt_in_level: "single_opt_in",
+            consent_updated_at: new Date().toISOString(),
+          },
+        },
+      }),
+      cache: "no-store",
+    }
+  );
+
+  const body = await res.text();
+  if (res.ok) return "subscribed";
+
+  // Shopify answers 422 when the address already belongs to a customer.
+  if (res.status === 422 && /already been taken/i.test(body)) return "already";
+
+  throw new Error(`Shopify customers.json ${res.status}: ${body.slice(0, 300)}`);
 }

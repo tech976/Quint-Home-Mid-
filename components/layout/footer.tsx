@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Monogram } from "@/components/brand/logo";
+import { NewsletterForm } from "@/components/layout/newsletter-form";
 
 const cols = [
   {
@@ -48,20 +49,7 @@ export function Footer() {
             >
               The next breath. Quint Home, into your inbox.
             </h3>
-            <form className="mt-8 flex max-w-md items-end gap-3 border-b border-[color:var(--color-charcoal)] pb-2">
-              <input
-                type="email"
-                placeholder="Your email"
-                className="flex-1 bg-transparent text-[0.95rem] outline-none placeholder:text-[color:var(--color-charcoal-soft)]"
-                aria-label="Email"
-              />
-              <button
-                type="submit"
-                className="text-[0.72rem] uppercase tracking-[0.18em] text-[color:var(--color-charcoal)] transition-colors hover:text-[color:var(--color-clay)]"
-              >
-                Subscribe
-              </button>
-            </form>
+            <NewsletterForm />
           </div>
 
           <div className="flex items-center justify-start md:justify-end">

@@ -4,6 +4,8 @@ import { storefront } from "./client";
 export interface CartLine {
   id: string;
   quantity: number;
+  /** Buyer choices carried on the line, e.g. the included oil. */
+  attributes: { key: string; value: string }[];
   merchandiseId: string;
   productTitle: string;
   variantTitle: string;
@@ -32,6 +34,7 @@ const CART_FIELDS = `
     edges { node {
       id
       quantity
+      attributes { key value }
       merchandise {
         ... on ProductVariant {
           id
@@ -55,6 +58,7 @@ interface RawCart {
       node: {
         id: string;
         quantity: number;
+        attributes: { key: string; value: string }[];
         merchandise: {
           id: string;
           title: string;
@@ -78,6 +82,7 @@ function normalise(c: RawCart | null | undefined): Cart | null {
     lines: c.lines.edges.map(({ node }) => ({
       id: node.id,
       quantity: node.quantity,
+      attributes: node.attributes ?? [],
       merchandiseId: node.merchandise.id,
       productTitle: node.merchandise.product.title,
       variantTitle: node.merchandise.title,
@@ -112,7 +117,11 @@ export async function cartGet(id: string): Promise<Cart | null> {
 
 export async function cartLinesAdd(
   cartId: string,
-  lines: { merchandiseId: string; quantity: number }[]
+  lines: {
+    merchandiseId: string;
+    quantity: number;
+    attributes?: { key: string; value: string }[];
+  }[]
 ): Promise<Cart> {
   const data = await storefront<{ cartLinesAdd: { cart: RawCart } }>(
     `mutation add($cartId: ID!, $lines: [CartLineInput!]!) {

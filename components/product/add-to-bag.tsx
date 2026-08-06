@@ -11,6 +11,8 @@ interface Props {
   variantId?: string;
   /** Whether the selected variant is in stock. */
   available?: boolean;
+  /** Buyer choices to carry on the cart line, e.g. the included oil. */
+  attributes?: { key: string; value: string }[];
 }
 
 export function AddToBag({
@@ -18,6 +20,7 @@ export function AddToBag({
   subscribeOffer = true,
   variantId,
   available = true,
+  attributes,
 }: Props) {
   const [mode, setMode] = useState<"one-time" | "subscribe">("one-time");
   const subscribePrice = Math.round(priceINR * 0.85);
@@ -126,7 +129,7 @@ export function AddToBag({
       <button
         type="button"
         disabled={soldOut || !variantId || pending}
-        onClick={() => variantId && add(variantId)}
+        onClick={() => variantId && add(variantId, 1, attributes)}
         className="group relative mt-2 inline-flex h-14 items-center justify-center gap-3 overflow-hidden bg-[color:var(--color-charcoal)] px-8 text-[0.74rem] uppercase tracking-[0.32em] text-[color:var(--color-ivory)] transition-colors duration-500 hover:bg-[color:var(--color-clay-deep)] disabled:cursor-not-allowed disabled:opacity-50"
       >
         <span className="relative z-10">

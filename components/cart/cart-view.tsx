@@ -138,6 +138,14 @@ export function CartView() {
                       {l.variantTitle}
                     </p>
                   )}
+                  {l.attributes?.map((a) => (
+                    <p
+                      key={a.key}
+                      className="mt-1.5 text-[0.78rem] text-[color:var(--color-charcoal-soft)]"
+                    >
+                      {a.key}: <span className="text-[color:var(--color-charcoal)]">{a.value}</span>
+                    </p>
+                  ))}
 
                   {l.quantity > 1 && (
                     <p className="mt-1.5 text-[0.78rem] tabular-nums text-[color:var(--color-charcoal-soft)]">

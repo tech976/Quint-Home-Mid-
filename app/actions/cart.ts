@@ -52,10 +52,11 @@ async function ensureCart(): Promise<string> {
 
 export async function addToCartAction(
   merchandiseId: string,
-  quantity = 1
+  quantity = 1,
+  attributes?: { key: string; value: string }[]
 ): Promise<Cart> {
   const cartId = await ensureCart();
-  return cartLinesAdd(cartId, [{ merchandiseId, quantity }]);
+  return cartLinesAdd(cartId, [{ merchandiseId, quantity, attributes }]);
 }
 
 export async function updateLineAction(
