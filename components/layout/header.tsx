@@ -30,6 +30,8 @@ export function Header() {
   const [hidden, setHidden] = useState(false);
   const [hovered, setHovered] = useState(false);
   const [pastHero, setPastHero] = useState(false);
+  // True only while the header still sits inside the hero's dark top gradient.
+  const [atTop, setAtTop] = useState(true);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [slideHidden, setSlideHidden] = useState(false);
   const { count, setOpen: setCartOpen } = useCart();
@@ -39,10 +41,12 @@ export function Header() {
   const accum = useRef(0);
   const headerRef = useRef<HTMLElement>(null);
 
-  // On the homepage the header stays transparent and merged into the banner for
-  // the WHOLE hero. The solid header only exists *below* the hero – and there it
-  // hides on scroll-down and slides back on scroll-up. Inner pages are always solid.
-  const transparent = overlay && !pastHero && !hovered && !mobileOpen;
+  // On the homepage the header is transparent white text merged into the banner —
+  // but only while it sits inside the hero's dark top gradient. That gradient is
+  // what makes white text readable, and it only covers the first ~192px. Once the
+  // page is scrolled the header floats over bare artwork, some of which is bright
+  // (the sunlit lounge shot), so it takes the solid panel instead.
+  const transparent = overlay && atTop && !pastHero && !hovered && !mobileOpen;
 
   useEffect(() => {
     function onScroll() {
@@ -64,6 +68,8 @@ export function Header() {
       // smooth-scroll's tiny per-frame steps still trigger a reliable reveal.
       const delta = y - lastY.current;
       lastY.current = y;
+
+      setAtTop(y <= 8);
 
       if (y <= 8) {
         setHidden(false);
