@@ -222,7 +222,7 @@ export default async function JournalPostPage({
             </h2>
             <div className="mt-9 flex flex-wrap items-center justify-center gap-x-8 gap-y-3">
               <Link
-                href="/shop#diffusers"
+                href="/range#diffusers"
                 className="group inline-flex items-center gap-3 border-b border-[color:var(--color-charcoal)] pb-1.5 text-[0.72rem] uppercase tracking-[0.32em] transition-colors duration-500 hover:border-[color:var(--color-clay)] hover:text-[color:var(--color-clay)]"
               >
                 Shop diffusers
@@ -231,7 +231,7 @@ export default async function JournalPostPage({
                 </span>
               </Link>
               <Link
-                href="/shop#oils"
+                href="/range#oils"
                 className="text-[0.72rem] uppercase tracking-[0.32em] text-[color:var(--color-charcoal-soft)] transition-colors duration-500 hover:text-[color:var(--color-charcoal)]"
               >
                 Or the oils →

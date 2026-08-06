@@ -65,21 +65,21 @@ export function SmartHome() {
           <div className="mt-16 border-t border-[color:var(--color-charcoal)]/10 pt-12">
             <div className="mx-auto flex flex-col items-center gap-2.5 text-[0.86rem] uppercase tracking-[0.2em] text-[color:var(--color-charcoal-soft)] sm:flex-row sm:flex-wrap sm:justify-center sm:gap-x-6 sm:gap-y-3">
               <Link
-                href="/shop#diffusers"
+                href="/range#diffusers"
                 className="transition-colors duration-300 hover:text-[color:var(--color-charcoal)]"
               >
                 Waterless Diffusers
               </Link>
               <span className="hidden text-[color:var(--color-charcoal-soft)]/35 sm:inline">·</span>
               <Link
-                href="/shop"
+                href="/range"
                 className="transition-colors duration-300 hover:text-[color:var(--color-charcoal)]"
               >
                 Reed Diffusers &amp; Candles
               </Link>
               <span className="hidden text-[color:var(--color-charcoal-soft)]/35 sm:inline">·</span>
               <Link
-                href="/shop#oils"
+                href="/range#oils"
                 className="transition-colors duration-300 hover:text-[color:var(--color-charcoal)]"
               >
                 Fragrance Oils

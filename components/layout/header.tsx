@@ -9,7 +9,7 @@ import { Logo } from "@/components/brand/logo";
 import { cn } from "@/lib/utils";
 
 const navLinks = [
-  { href: "/shop", label: "The Range" },
+  { href: "/range", label: "The Range" },
   { href: "/find-your-scent", label: "Find Your Scent" },
   { href: "/about", label: "About" },
   { href: "/journal", label: "Journal" },
@@ -18,8 +18,8 @@ const navLinks = [
 
 // Shop dropdown – diffusers first, then oils. No "everything" entry.
 const shopMenu = [
-  { href: "/shop#diffusers", label: "Diffusers" },
-  { href: "/shop#oils", label: "Oils" },
+  { href: "/range#diffusers", label: "Diffusers" },
+  { href: "/range#oils", label: "Oils" },
 ];
 
 export function Header() {
@@ -144,7 +144,7 @@ export function Header() {
             {/* Shop – with category dropdown */}
             <div className="group relative">
               <Link
-                href="/shop"
+                href="/range"
                 className="flex items-center gap-1.5 text-[0.78rem] uppercase tracking-[0.18em] transition-colors duration-300 hover:text-[color:var(--color-clay)]"
               >
                 The Range
@@ -262,7 +262,7 @@ export function Header() {
                   >
                     {l.label}
                   </Link>
-                  {l.href === "/shop" && (
+                  {l.href === "/range" && (
                     <div className="mt-3 flex flex-col gap-2.5 pl-0.5">
                       {shopMenu.map((s) => (
                         <Link

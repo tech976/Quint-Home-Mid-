@@ -53,7 +53,7 @@ export async function DiffuserShowcase() {
             {diffusers.map((d, i) => (
               <Link
                 key={d.slug}
-                href={`/shop/${d.slug}`}
+                href={`/range/${d.slug}`}
                 className="group block w-[84%] shrink-0 snap-start sm:w-[46%] lg:w-[calc((100%_-_3.5rem)/3)]"
               >
                 <div className="relative aspect-[8/9] overflow-hidden bg-[color:var(--color-stardust-soft)]">

@@ -329,7 +329,7 @@ export function ScentFinder() {
 
                 <div className="mt-8 flex flex-wrap items-center gap-x-8 gap-y-3">
                   <Link
-                    href={`/shop/${result.slug}`}
+                    href={`/range/${result.slug}`}
                     className="group inline-flex items-center gap-3 border-b border-[color:var(--color-charcoal)] pb-1.5 text-[0.72rem] uppercase tracking-[0.28em] transition-colors duration-300 hover:border-[color:var(--color-clay)] hover:text-[color:var(--color-clay)]"
                   >
                     View {result.name} · {formatINR(result.priceINR)}

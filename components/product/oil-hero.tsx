@@ -118,7 +118,7 @@ export function OilHero({
         <div className="min-w-0 lg:sticky lg:top-28 lg:self-start">
           <FadeUp>
             <div className="mb-6 flex items-center gap-4 text-[0.6rem] uppercase tracking-[0.42em] text-[color:var(--color-charcoal-soft)]">
-              <Link href="/shop" className="hover:text-[color:var(--color-clay)]">
+              <Link href="/range" className="hover:text-[color:var(--color-clay)]">
                 Shop
               </Link>
               <span className="h-px w-6 bg-[color:var(--color-rule)]" />

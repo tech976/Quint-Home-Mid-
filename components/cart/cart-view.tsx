@@ -41,7 +41,7 @@ export function CartView() {
           </p>
           <div className="mt-10 flex flex-wrap items-center justify-center gap-x-8 gap-y-4">
             <Link
-              href="/shop#diffusers"
+              href="/range#diffusers"
               className="group inline-flex items-center gap-3 bg-[color:var(--color-charcoal)] px-8 py-4 text-[0.74rem] uppercase tracking-[0.32em] text-[color:var(--color-ivory)] transition-colors duration-500 hover:bg-[color:var(--color-clay-deep)]"
             >
               Shop diffusers
@@ -98,7 +98,7 @@ export function CartView() {
                 className="flex gap-5 border-b border-[color:var(--color-rule)] py-7 first:pt-0"
               >
                 <Link
-                  href={`/shop/${l.handle}`}
+                  href={`/range/${l.handle}`}
                   className="relative h-32 w-24 shrink-0 overflow-hidden bg-[color:var(--color-stardust-soft)] sm:h-40 sm:w-32"
                 >
                   {/* Shopify CDN images are not in next.config remotePatterns,
@@ -116,7 +116,7 @@ export function CartView() {
                 <div className="flex min-w-0 flex-1 flex-col">
                   <div className="flex items-baseline justify-between gap-4">
                     <Link
-                      href={`/shop/${l.handle}`}
+                      href={`/range/${l.handle}`}
                       className="transition-colors duration-500 hover:text-[color:var(--color-clay)]"
                       style={{
                         fontFamily: "var(--font-serif)",
@@ -184,7 +184,7 @@ export function CartView() {
           </ul>
 
           <Link
-            href="/shop"
+            href="/range"
             className="mt-8 inline-block text-[0.72rem] uppercase tracking-[0.28em] text-[color:var(--color-charcoal-soft)] underline-offset-4 transition-colors duration-500 hover:text-[color:var(--color-charcoal)] hover:underline"
           >
             ← Continue shopping

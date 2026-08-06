@@ -36,11 +36,11 @@ export async function generateMetadata({
   return {
     title: product.name,
     description,
-    alternates: { canonical: `/shop/${slug}` },
+    alternates: { canonical: `/range/${slug}` },
     openGraph: {
       title: ogTitle,
       description,
-      url: `/shop/${slug}`,
+      url: `/range/${slug}`,
       type: "website",
       images: [{ url: product.image, alt: product.name }],
     },
@@ -108,7 +108,7 @@ export default async function ProductPage({
                 </em>
               </h2>
               <Link
-                href="/shop?category=oils"
+                href="/range?category=oils"
                 className="text-[0.72rem] uppercase tracking-[0.32em] underline-offset-4 hover:text-[color:var(--color-clay)] hover:underline"
               >
                 All scents →
@@ -120,7 +120,7 @@ export default async function ProductPage({
             {relatedOils.map((o, i) => (
               <FadeUp key={o.slug} delay={i * 0.05} className="contents">
                 <Link
-                  href={`/shop/${o.slug}`}
+                  href={`/range/${o.slug}`}
                   className="group relative flex aspect-[4/5] flex-col justify-between overflow-hidden p-6 text-[color:var(--color-stardust)]"
                 >
                   <Image
@@ -218,7 +218,7 @@ async function OilProductPage({ oil }: { oil: FragranceOil }) {
                 </em>
               </h2>
               <Link
-                href="/shop#diffusers"
+                href="/range#diffusers"
                 className="text-[0.72rem] uppercase tracking-[0.32em] underline-offset-4 hover:text-[color:var(--color-clay)] hover:underline"
               >
                 All diffusers →
@@ -229,7 +229,7 @@ async function OilProductPage({ oil }: { oil: FragranceOil }) {
           <div className="grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-4">
             {pairDiffusers.map((d, i) => (
               <FadeUp key={d.slug} delay={i * 0.05}>
-                <Link href={`/shop/${d.slug}`} className="group block">
+                <Link href={`/range/${d.slug}`} className="group block">
                   <div className="relative aspect-[4/5] overflow-hidden bg-[color:var(--color-stardust-soft)]">
                     <Image
                       src={d.image}

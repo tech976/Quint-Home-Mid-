@@ -5,8 +5,8 @@ const cols = [
   {
     heading: "The Range",
     links: [
-      { href: "/shop#diffusers", label: "Diffusers" },
-      { href: "/shop#oils", label: "Fragrance Oils" },
+      { href: "/range#diffusers", label: "Diffusers" },
+      { href: "/range#oils", label: "Fragrance Oils" },
     ],
   },
   {

@@ -21,11 +21,17 @@ const nextConfig: NextConfig = {
     minimumCacheTTL: 60,
   },
   async redirects() {
-    return Object.entries(SLUG_REDIRECTS).map(([from, to]) => ({
-      source: `/shop/${from}`,
-      destination: `/shop/${to}`,
-      statusCode: 301,
-    }));
+    return [
+      // Old model-code paths first, so they win over the catch-all below.
+      ...Object.entries(SLUG_REDIRECTS).flatMap(([from, to]) => [
+        { source: `/shop/${from}`, destination: `/range/${to}`, statusCode: 301 as const },
+        { source: `/range/${from}`, destination: `/range/${to}`, statusCode: 301 as const },
+      ]),
+      // /shop moved to /range. Permanent redirects rather than dead links, so
+      // anything already indexed or shared keeps working and passes its ranking on.
+      { source: "/shop", destination: "/range", statusCode: 301 as const },
+      { source: "/shop/:slug*", destination: "/range/:slug*", statusCode: 301 as const },
+    ];
   },
 };
 

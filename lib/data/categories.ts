@@ -14,12 +14,12 @@ export interface ShopCategory {
  * Candles and Room Sprays are planned and intentionally hidden for now.
  */
 export const shopCategories: ShopCategory[] = [
-  { slug: "browse", label: "Search the range", href: "/shop#browse", active: true },
-  { slug: "diffusers", label: "Diffusers", href: "/shop#diffusers", active: true },
-  { slug: "oils", label: "Fragrance Oils", href: "/shop#oils", active: true },
-  { slug: "reed-diffusers", label: "Reed Diffusers", href: "/shop#reed-diffusers", active: false },
-  { slug: "candles", label: "Candles", href: "/shop#candles", active: false },
-  { slug: "room-sprays", label: "Room Sprays", href: "/shop#room-sprays", active: false },
+  { slug: "browse", label: "Search the range", href: "/range#browse", active: true },
+  { slug: "diffusers", label: "Diffusers", href: "/range#diffusers", active: true },
+  { slug: "oils", label: "Fragrance Oils", href: "/range#oils", active: true },
+  { slug: "reed-diffusers", label: "Reed Diffusers", href: "/range#reed-diffusers", active: false },
+  { slug: "candles", label: "Candles", href: "/range#candles", active: false },
+  { slug: "room-sprays", label: "Room Sprays", href: "/range#room-sprays", active: false },
 ];
 
 /** Only the categories customers should see today. */

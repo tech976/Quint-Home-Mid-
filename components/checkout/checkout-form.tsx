@@ -78,7 +78,7 @@ export function CheckoutForm({ shippingFlat }: { shippingFlat: number }) {
             There is nothing to check out.
           </h1>
           <Link
-            href="/shop"
+            href="/range"
             className="group mt-10 inline-flex items-center gap-3 bg-[color:var(--color-charcoal)] px-8 py-4 text-[0.74rem] uppercase tracking-[0.32em] text-[color:var(--color-ivory)] transition-colors duration-500 hover:bg-[color:var(--color-clay-deep)]"
           >
             Shop the range

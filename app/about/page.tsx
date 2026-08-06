@@ -395,7 +395,7 @@ export default function AboutPage() {
           <FadeUp delay={0.16}>
             <div className="mt-10 flex flex-wrap items-center justify-center gap-x-8 gap-y-3">
               <Link
-                href="/shop"
+                href="/range"
                 className="group inline-flex items-center gap-3 border-b border-[color:var(--color-charcoal)] pb-1.5 text-[0.72rem] uppercase tracking-[0.32em] transition-colors duration-500 hover:border-[color:var(--color-clay)] hover:text-[color:var(--color-clay)]"
               >
                 Shop the range

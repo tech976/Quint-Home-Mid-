@@ -33,7 +33,7 @@ type SearchItem = {
 const INDEX: SearchItem[] = [
   ...diffusers.map((d) => ({
     name: d.name,
-    href: `/shop/${d.slug}`,
+    href: `/range/${d.slug}`,
     kind: "Diffuser",
     meta: d.coverageLabel,
     image: d.image,
@@ -42,7 +42,7 @@ const INDEX: SearchItem[] = [
   })),
   ...oils.map((o) => ({
     name: o.name,
-    href: `/shop/${o.slug}`,
+    href: `/range/${o.slug}`,
     kind: "Fragrance Oil",
     meta: o.mood,
     image: o.image,

@@ -103,7 +103,7 @@ export default async function ShopPage() {
           <div className="grid gap-y-16 sm:grid-cols-2 md:grid-cols-3 md:gap-x-8 md:gap-y-20 lg:gap-x-10">
             {diffusers.map((d, i) => (
               <FadeUp key={d.slug} delay={i * 0.05}>
-                <Link href={`/shop/${d.slug}`} className="group block">
+                <Link href={`/range/${d.slug}`} className="group block">
                   <div className="relative aspect-[4/5] overflow-hidden bg-[color:var(--color-stardust-soft)]">
                     <Image
                       src={d.image}
@@ -231,7 +231,7 @@ export default async function ShopPage() {
               return (
                 <FadeUp key={o.slug} delay={(i % 3) * 0.06}>
                   <Link
-                    href={`/shop/${o.slug}`}
+                    href={`/range/${o.slug}`}
                     className="group flex h-full flex-col"
                   >
                     {/* Plate tile – every oil rendered identically for symmetry */}
@@ -357,7 +357,7 @@ export default async function ShopPage() {
           <FadeUp delay={0.24}>
             <div className="mt-10 flex flex-wrap items-center justify-center gap-x-8 gap-y-3">
               <Link
-                href="/shop/monolith"
+                href="/range/monolith"
                 className="group inline-flex items-center gap-3 border-b border-[color:var(--color-charcoal)] pb-1.5 text-[0.72rem] uppercase tracking-[0.32em] transition-colors duration-500 hover:text-[color:var(--color-clay)] hover:border-[color:var(--color-clay)]"
               >
                 Configure the diffuser

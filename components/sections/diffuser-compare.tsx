@@ -134,7 +134,7 @@ export function DiffuserCompare({
               {diffusers.map((d) => (
                 <Link
                   key={d.model}
-                  href={`/shop/${d.slug}`}
+                  href={`/range/${d.slug}`}
                   className="group flex flex-col text-center"
                 >
                   {/* Bigger render, no backing box — always floats on white,
