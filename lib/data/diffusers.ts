@@ -181,7 +181,7 @@ const diffusersByDefinition: Diffuser[] = [
     tagline: "Soft to the Touch. Warm in Every Sense.",
     description:
       "The Loom reimagines the aroma diffuser with a soft fabric exterior that feels as good as it looks. Where most diffusers are cold and clinical, this one is warm and tactile – designed to sit naturally on a bedside table, salon counter, or living room shelf. The candle-like ambient glow adds a gentle flicker of warmth to evening routines.\n\nPair via Bluetooth for app-based control when you want it, or simply reach for the satisfying knob to dial in intensity the old-fashioned way. Intuitive by design, it fits any space and any lifestyle.",
-    priceINR: 13999,
+    priceINR: 12999,
     bluetooth: true,
     coverageSqFt: [108, 590],
     coverageLabel: "Up to 590 sq ft",

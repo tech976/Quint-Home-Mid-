@@ -29,7 +29,7 @@ const sections: {
     chapter: "Two",
     label: "Shipping Charges",
     paragraphs: [
-      "Shipping is complimentary on all orders above ₹5,000. A flat fee applies below that and is shown clearly at checkout before payment. We currently ship within India only.",
+      "Shipping is complimentary on all orders above ₹5,000. Below that a flat ₹99 applies, shown clearly in your bag and at checkout before payment. We currently ship within India only.",
     ],
   },
   {

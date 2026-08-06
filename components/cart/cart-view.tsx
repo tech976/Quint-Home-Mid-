@@ -5,7 +5,7 @@ import { useCart } from "./cart-provider";
 import { formatINR } from "@/lib/utils";
 import { FadeUp } from "@/components/motion/fade-up";
 import { Monogram } from "@/components/brand/logo";
-import { FREE_SHIPPING_FROM } from "@/lib/checkout-config";
+import { FREE_SHIPPING_FROM, shippingFor } from "@/lib/checkout-config";
 
 export function CartView() {
   // headlessCheckout comes from the provider (set in the root layout) so the
@@ -13,7 +13,9 @@ export function CartView() {
   const { cart, update, remove, pending, headlessCheckout } = useCart();
   const lines = cart?.lines ?? [];
   const subtotal = cart?.subtotal ?? 0;
-  const freeShipping = subtotal >= FREE_SHIPPING_FROM;
+  const shipping = shippingFor(subtotal);
+  const freeShipping = shipping === 0;
+  const total = subtotal + shipping;
 
   /* ── Empty bag ─────────────────────────────────────────────── */
   if (lines.length === 0) {
@@ -222,7 +224,7 @@ export function CartView() {
                       : "text-[color:var(--color-charcoal-soft)]"
                   }
                 >
-                  {freeShipping ? "Complimentary" : "At checkout"}
+                  {freeShipping ? "Complimentary" : formatINR(shipping)}
                 </dd>
               </div>
             </dl>
@@ -239,7 +241,7 @@ export function CartView() {
                   fontWeight: 400,
                 }}
               >
-                {formatINR(subtotal)}
+                {formatINR(total)}
               </span>
             </div>
 
