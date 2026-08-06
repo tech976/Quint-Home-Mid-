@@ -14,6 +14,7 @@ export const metadata: Metadata = {
   title: "The Range",
   description:
     "Diffusers and fragrance oils – the full Quint Home range. IFRA-compliant.",
+  alternates: { canonical: "/range" },
 };
 
 export default async function ShopPage() {

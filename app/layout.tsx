@@ -19,7 +19,8 @@ export const metadata: Metadata = {
   },
   description:
     "Hotel-grade home fragrance from Mumbai. Waterless electronic diffusers and IFRA-compliant fragrance oils, designed to be displayed.",
-  metadataBase: new URL("https://quinthome.in"),
+  metadataBase: new URL("https://www.quinthome.in"),
+  alternates: { canonical: "/" },
   openGraph: {
     type: "website",
     title: "Quint Home – Air Elevated",
