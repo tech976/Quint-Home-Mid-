@@ -145,37 +145,6 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* ====================================================
-          § REGISTERED OFFICE
-          ==================================================== */}
-      <section className="border-t border-[color:var(--color-rule)] py-[var(--spacing-section-sm)]">
-        <div className="mx-auto max-w-[var(--container-full)] px-6 md:px-10">
-          <FadeUp>
-            <div className="grid gap-6 md:grid-cols-12 md:gap-16">
-              <p className="text-[0.62rem] uppercase tracking-[0.42em] text-[color:var(--color-charcoal-soft)] md:col-span-4">
-                Registered Office
-              </p>
-              <address className="not-italic text-[var(--text-base)] leading-[1.9] text-[color:var(--color-charcoal-soft)] md:col-span-8">
-                <span className="text-[color:var(--color-charcoal)]">
-                  Rusera Lifestyle
-                </span>
-                <br />
-                3102, 31st Floor, Ridhi Siddhi Apartment, R A Kidwai Road,
-                <br />
-                Matunga East, Mumbai &ndash; 400019, Maharashtra
-                <br />
-                <a
-                  href="mailto:hello@ruseralifestyle.com"
-                  className="underline-offset-4 hover:text-[color:var(--color-charcoal)] hover:underline"
-                >
-                  hello@ruseralifestyle.com
-                </a>{" "}
-                &middot; +91 98193 45550
-              </address>
-            </div>
-          </FadeUp>
-        </div>
-      </section>
     </article>
   );
 }

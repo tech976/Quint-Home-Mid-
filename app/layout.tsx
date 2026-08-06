@@ -41,6 +41,38 @@ export default function RootLayout({
         suppressHydrationWarning
         className="flex min-h-screen flex-col bg-[color:var(--color-white)] text-[color:var(--color-charcoal)]"
       >
+        {/* Names the home page as the brand's entity, which is what search
+            engines use to decide the page to show for a brand query — without
+            it a listing page can outrank the home page. */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@graph": [
+                {
+                  "@type": "Organization",
+                  "@id": "https://www.quinthome.in/#organization",
+                  name: "Quint Home",
+                  url: "https://www.quinthome.in",
+                  logo: "https://www.quinthome.in/icon.png",
+                  email: "hello@quinthome.in",
+                  description:
+                    "Hotel-grade home fragrance from Mumbai. Waterless electronic diffusers and IFRA-compliant fragrance oils.",
+                  sameAs: ["https://www.instagram.com/shopquinthome/"],
+                },
+                {
+                  "@type": "WebSite",
+                  "@id": "https://www.quinthome.in/#website",
+                  url: "https://www.quinthome.in",
+                  name: "Quint Home",
+                  publisher: { "@id": "https://www.quinthome.in/#organization" },
+                },
+              ],
+            }),
+          }}
+        />
+
         {/* Checkout only moves off Shopify once payment *and* order creation
             are both configured — see docs/payu-checkout.md. */}
         <CartProvider

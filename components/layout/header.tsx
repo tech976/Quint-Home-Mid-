@@ -9,7 +9,7 @@ import { Logo } from "@/components/brand/logo";
 import { cn } from "@/lib/utils";
 
 const navLinks = [
-  { href: "/shop", label: "Shop" },
+  { href: "/shop", label: "The Range" },
   { href: "/find-your-scent", label: "Find Your Scent" },
   { href: "/about", label: "About" },
   { href: "/journal", label: "Journal" },
@@ -147,7 +147,7 @@ export function Header() {
                 href="/shop"
                 className="flex items-center gap-1.5 text-[0.78rem] uppercase tracking-[0.18em] transition-colors duration-300 hover:text-[color:var(--color-clay)]"
               >
-                Shop
+                The Range
                 <ChevronDown className="h-3.5 w-3.5 opacity-60 transition-transform duration-300 group-hover:rotate-180" />
               </Link>
               <div className="invisible absolute left-0 top-full pt-4 opacity-0 transition-all duration-200 ease-[var(--ease-quint)] group-hover:visible group-hover:opacity-100">

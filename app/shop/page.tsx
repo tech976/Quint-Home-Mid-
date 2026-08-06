@@ -11,7 +11,7 @@ import { DiffuserCompare } from "@/components/sections/diffuser-compare";
 import { getCommerceMap, shopifyHandle } from "@/lib/shopify/commerce";
 
 export const metadata: Metadata = {
-  title: "Shop",
+  title: "The Range",
   description:
     "Diffusers and fragrance oils – the full Quint Home range. IFRA-compliant.",
 };

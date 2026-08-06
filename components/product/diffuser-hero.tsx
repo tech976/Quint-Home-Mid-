@@ -128,7 +128,7 @@ export function DiffuserHero({
         <div className="min-w-0 lg:sticky lg:top-28 lg:self-start">
           <FadeUp>
             <div className="mb-6 flex items-center gap-4 text-[0.6rem] uppercase tracking-[0.42em] text-[color:var(--color-charcoal-soft)]">
-              <span>Shop</span>
+              <span>The Range</span>
               <span className="h-px w-6 bg-[color:var(--color-rule)]" />
               <span>Diffusers</span>
             </div>

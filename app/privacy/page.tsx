@@ -257,10 +257,6 @@ export default function PrivacyPage() {
                   Rusera Lifestyle
                 </span>
                 <br />
-                3102, 31st Floor, Ridhi Siddhi Apartment, R A Kidwai Road,
-                <br />
-                Matunga East, Mumbai &ndash; 400019, Maharashtra
-                <br />
                 <a
                   href="mailto:hello@ruseralifestyle.com"
                   className="underline-offset-4 hover:text-[color:var(--color-aerial-soft)] hover:underline"

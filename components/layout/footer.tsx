@@ -3,7 +3,7 @@ import { Monogram } from "@/components/brand/logo";
 
 const cols = [
   {
-    heading: "Shop",
+    heading: "The Range",
     links: [
       { href: "/shop#diffusers", label: "Diffusers" },
       { href: "/shop#oils", label: "Fragrance Oils" },
@@ -80,13 +80,7 @@ export function Footer() {
             <p className="mt-3 max-w-[34ch] text-[0.92rem] leading-[1.7] text-[color:var(--color-charcoal-soft)]">
               Crafted for homes that feel as beautiful as they look.
             </p>
-            <address className="mt-6 max-w-[34ch] not-italic text-[0.78rem] leading-[1.7] tracking-[0.02em] text-[color:var(--color-charcoal-soft)]">
-              Rusera Lifestyle
-              <br />
-              3102, 31st Floor, Ridhi Siddhi Apartment, R A Kidwai Road,
-              Matunga East, Mumbai &ndash; 400019, Maharashtra
-            </address>
-            <p className="mt-4 text-[0.78rem] tracking-[0.06em] text-[color:var(--color-charcoal-soft)]">
+            <p className="mt-6 text-[0.78rem] tracking-[0.06em] text-[color:var(--color-charcoal-soft)]">
               <a
                 href="mailto:hello@quinthome.in"
                 className="underline-offset-4 hover:underline"
