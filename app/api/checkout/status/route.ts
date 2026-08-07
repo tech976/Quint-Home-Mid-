@@ -86,6 +86,7 @@ export async function GET() {
       (k) =>
         k.startsWith("SHOPIFY") ||
         k.startsWith("PAYU") ||
+        k.startsWith("SHIPROCKET") ||
         // catch a differently-named client id / secret
         /CLIENT|API_KEY|APIKEY|SECRET/i.test(k)
     )
@@ -104,6 +105,11 @@ export async function GET() {
         ? `${process.env.PAYU_MERCHANT_KEY.slice(0, 3)}… (len ${process.env.PAYU_MERCHANT_KEY.length})`
         : null,
       adminApi,
+      shiprocket: {
+        email: Boolean(process.env.SHIPROCKET_EMAIL),
+        password: Boolean(process.env.SHIPROCKET_PASSWORD),
+        pickupPin: process.env.SHIPROCKET_PICKUP_PIN ?? null,
+      },
       payuSaltFingerprint: process.env.PAYU_MERCHANT_SALT
         ? crypto
             .createHash("sha256")
