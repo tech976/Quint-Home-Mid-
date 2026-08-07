@@ -31,6 +31,22 @@ const fmt = (d: Date) =>
  * Computed from the customer's own clock, so it never disagrees with the date
  * on their device.
  */
+/**
+ * Same window, but with the transit half replaced by a courier's own quote for
+ * the customer's PIN code. Their quote counts from pickup, so we still add our
+ * dispatch days on top — otherwise checkout would promise a date that assumes
+ * the parcel leaves today. A day of slack is kept on the far end, because a
+ * single-date promise leaves no room for a missed pickup.
+ */
+export function deliveryEstimateFromTransit(
+  transitDays: number,
+  from: Date = new Date()
+): string {
+  const earliest = addBusinessDays(from, DISPATCH_BUSINESS_DAYS + transitDays);
+  const latest = addBusinessDays(from, DISPATCH_BUSINESS_DAYS + transitDays + 1);
+  return `${fmt(earliest)} – ${fmt(latest)}`;
+}
+
 export function deliveryEstimate(from: Date = new Date()): string {
   const earliest = addBusinessDays(
     from,

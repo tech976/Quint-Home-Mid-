@@ -7,7 +7,7 @@ import { formatINR } from "@/lib/utils";
 import { FadeUp } from "@/components/motion/fade-up";
 import { Monogram } from "@/components/brand/logo";
 import { FREE_SHIPPING_FROM } from "@/lib/checkout-config";
-import { deliveryEstimate } from "@/lib/delivery";
+import { deliveryEstimate, deliveryEstimateFromTransit } from "@/lib/delivery";
 
 const inputClass =
   "w-[100%] border-b border-[color:var(--color-rule)] bg-transparent py-2.5 text-[0.95rem] outline-none transition-colors placeholder:text-[color:var(--color-charcoal-soft)]/60 focus:border-[color:var(--color-charcoal)]";
@@ -299,13 +299,13 @@ export function CheckoutForm({ shippingFlat }: { shippingFlat: number }) {
                   {shipping === 0 ? "Complimentary" : formatINR(shipping)}
                 </dd>
               </div>
-              {(live?.etd || eta) && (
+              {(live?.days || eta) && (
                 <div className="flex items-baseline justify-between gap-3">
                   <dt className="text-[color:var(--color-charcoal-soft)]">
                     Estimated delivery
                   </dt>
                   <dd className="text-right text-[color:var(--color-charcoal)]">
-                    {live?.etd ?? eta}
+                    {live?.days ? deliveryEstimateFromTransit(live.days) : eta}
                     {live?.courier && (
                       <span className="mt-0.5 block text-[0.62rem] uppercase tracking-[0.18em] text-[color:var(--color-charcoal-soft)]">
                         via {live.courier}
