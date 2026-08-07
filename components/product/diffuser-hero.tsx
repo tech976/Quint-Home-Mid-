@@ -202,27 +202,10 @@ export function DiffuserHero({
             </FadeUp>
           )}
 
-          {/* Price + Add to bag – kept high so the CTA is reachable at once */}
+          {/* --- Choose your included oil – asked before the CTA, since every
+               diffuser ships with one --- */}
           <FadeUp delay={0.2}>
-            <div id="buy" className="mt-8 scroll-mt-24">
-              {/* No subscribe & save on diffusers – that offer is for the oils only */}
-              <AddToBag
-                priceINR={variant?.price ?? product.priceINR}
-                subscribeOffer={false}
-                variantId={variant?.id}
-                available={variant?.available ?? true}
-                // The included scent is chosen on this page, so it has to travel
-                // with the line — otherwise the order never records which one.
-                attributes={[
-                  { key: "Included oil", value: selectedOil.name },
-                ]}
-              />
-            </div>
-          </FadeUp>
-
-          {/* --- Choose your included oil – directly under the buy box --- */}
-          <FadeUp delay={0.22}>
-            <div className="mt-12 border-t border-[color:var(--color-rule)] pt-10">
+            <div className="mt-8 border-t border-[color:var(--color-rule)] pt-8">
               <label
                 htmlFor="starting-oil"
                 className="text-[0.58rem] uppercase tracking-[0.32em] text-[color:var(--color-charcoal-soft)]"
@@ -281,6 +264,25 @@ export function DiffuserHero({
                 Your first 50 ml is included free (Hotel Credential oils carry a
                 ₹200 supplement). Swap scents or add more anytime.
               </p>
+            </div>
+          </FadeUp>
+
+          {/* Price + Add to bag – sits under the scent picker so the choice
+               is made first */}
+          <FadeUp delay={0.22}>
+            <div id="buy" className="mt-10 scroll-mt-24">
+              {/* No subscribe & save on diffusers – that offer is for the oils only */}
+              <AddToBag
+                priceINR={variant?.price ?? product.priceINR}
+                subscribeOffer={false}
+                variantId={variant?.id}
+                available={variant?.available ?? true}
+                // The included scent is chosen on this page, so it has to travel
+                // with the line — otherwise the order never records which one.
+                attributes={[
+                  { key: "Included oil", value: selectedOil.name },
+                ]}
+              />
             </div>
           </FadeUp>
 
