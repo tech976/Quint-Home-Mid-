@@ -128,7 +128,10 @@ export function Header() {
         className={cn(
           "sticky top-0 z-40 will-change-transform",
           transparent
-            ? "bg-transparent text-[color:var(--color-white)]"
+            ? // Not fully transparent: a soft scrim of its own, because the
+              // hero's top gradient has largely faded by this band and white
+              // nav over a bright slide (the sunlit lounge) reads as missing.
+              "bg-gradient-to-b from-black/45 via-black/20 to-transparent text-[color:var(--color-white)]"
             : "bg-[color:var(--color-white)]/85 text-[color:var(--color-charcoal)] backdrop-blur-xl",
           (hidden || slideHidden) && !mobileOpen
             ? "-translate-y-full"
