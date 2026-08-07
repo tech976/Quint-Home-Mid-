@@ -93,7 +93,7 @@ export async function ScentLibrary() {
                   {/* Name + price only */}
                   <div className={`relative mt-auto flex items-end justify-between gap-3 ${fg}`}>
                     <h3
-                      className="transition-transform duration-700 ease-[var(--ease-quint)] group-hover:-translate-y-0.5"
+                      className="text-[color:var(--color-white)] transition-transform duration-700 ease-[var(--ease-quint)] group-hover:-translate-y-0.5"
                       style={{
                         fontFamily: "var(--font-serif)",
                         fontSize: "1.05rem",

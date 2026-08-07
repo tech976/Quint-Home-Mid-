@@ -1,4 +1,46 @@
 import { storefront } from "./client";
+import { oils } from "@/lib/data/oils";
+import { diffusers } from "@/lib/data/diffusers";
+
+/**
+ * Shopify's product photos are generic stand-ins, and some handles still carry
+ * the old product name (Terrain is filed as "quietude"), so a bag line could
+ * show the wrong bottle and link through a redirect. Resolve the catalogue
+ * entry from the handle, falling back to the title, and use our own artwork
+ * and slug.
+ */
+const CATALOGUE = [...oils, ...diffusers];
+const BY_SLUG = new Map(CATALOGUE.map((p) => [p.slug, p]));
+
+/** Products Shopify still files under their previous name. Mirrors the
+ *  redirects in next.config.ts. */
+const RENAMED: Record<string, string> = {
+  quietude: "terrain",
+  "tabletop-a326": "monolith",
+  "tabletop-fabric-a974": "loom",
+  "clock-at370": "ember",
+  "dual-mist-at302": "pillar",
+  "plug-in-a815": "pebble",
+};
+
+const key = (v: string) =>
+  v.toLowerCase().trim().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+
+/** Matches on the handle first, then the title, allowing for either still
+ *  carrying the old name. */
+/** Also keyed on the product name, since a Shopify handle can differ from our
+ *  slug ("the-ember" vs "ember"). */
+const BY_NAME = new Map(CATALOGUE.map((p) => [key(p.name), p]));
+
+function localProduct(handle: string, title: string) {
+  for (const raw of [handle, title]) {
+    const k = key(raw);
+    const hit =
+      BY_SLUG.get(k) ?? BY_NAME.get(k) ?? BY_SLUG.get(RENAMED[k] ?? "");
+    if (hit) return hit;
+  }
+  return undefined;
+}
 
 /** A single line in the Shopify cart, flattened for the UI. */
 export interface CartLine {
@@ -84,12 +126,26 @@ function normalise(c: RawCart | null | undefined): Cart | null {
       quantity: node.quantity,
       attributes: node.attributes ?? [],
       merchandiseId: node.merchandise.id,
-      productTitle: node.merchandise.product.title,
+      productTitle:
+        localProduct(
+          node.merchandise.product.handle,
+          node.merchandise.product.title
+        )?.name ?? node.merchandise.product.title,
       variantTitle: node.merchandise.title,
-      handle: node.merchandise.product.handle,
+      handle:
+        localProduct(
+          node.merchandise.product.handle,
+          node.merchandise.product.title
+        )?.slug ?? node.merchandise.product.handle,
       price: Math.round(Number(node.merchandise.price.amount)),
       currency: node.merchandise.price.currencyCode,
-      image: node.merchandise.image?.url ?? null,
+      image:
+        localProduct(
+          node.merchandise.product.handle,
+          node.merchandise.product.title
+        )?.image ??
+        node.merchandise.image?.url ??
+        null,
     })),
   };
 }
