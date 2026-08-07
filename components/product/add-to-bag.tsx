@@ -17,7 +17,11 @@ interface Props {
 
 export function AddToBag({
   priceINR,
-  subscribeOffer = true,
+  // Off until subscriptions are actually built. The chooser below is complete,
+  // but `mode` never reaches add() — so picking "Subscribe & save" quoted 15%
+  // off and then charged full price at the bag. Turn this back on in the same
+  // change that makes the discount real.
+  subscribeOffer = false,
   variantId,
   available = true,
   attributes,
