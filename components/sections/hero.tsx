@@ -62,6 +62,8 @@ const slides: Slide[] = [
     src: "/images/hero-oils-collection.webp",
     alt: "The Quint fragrance oils — Shoreline, First Rain, Grand Lobby, Blanc Ritual, Soft Hour and Terrain — on wooden plinths",
     position: "center",
+    // The bottles are spread across the frame; a phone crop loses most of them.
+    desktopOnly: true,
   },
   // Phone-only slides – appended after the shared slides above.
   {
