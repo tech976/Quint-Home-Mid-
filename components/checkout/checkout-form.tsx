@@ -20,20 +20,17 @@ function Field({
   label,
   type = "text",
   required = false,
-  autoComplete,
-  placeholder,
-  pattern,
   className = "",
+  // Anything else (value/onChange, inputMode, maxLength…) goes straight to the
+  // input, so a controlled field like the PIN code behaves as written.
+  ...inputProps
 }: {
   name: string;
   label: string;
   type?: string;
   required?: boolean;
-  autoComplete?: string;
-  placeholder?: string;
-  pattern?: string;
   className?: string;
-}) {
+} & Omit<React.InputHTMLAttributes<HTMLInputElement>, "name" | "type" | "required" | "className">) {
   return (
     <label className={`block ${className}`}>
       <span className={labelClass}>
@@ -44,10 +41,8 @@ function Field({
         name={name}
         type={type}
         required={required}
-        autoComplete={autoComplete}
-        placeholder={placeholder}
-        pattern={pattern}
         className={inputClass}
+        {...inputProps}
       />
     </label>
   );
@@ -60,6 +55,44 @@ export function CheckoutForm({ shippingFlat }: { shippingFlat: number }) {
   const [eta, setEta] = useState<string | null>(null);
   useEffect(() => setEta(deliveryEstimate()), []);
   const lines = cart?.lines ?? [];
+
+  // Once a full PIN is typed we ask Shiprocket what the couriers actually
+  // quote for that pincode, and show that instead of our standing window.
+  // Anything less than a clean answer leaves the static estimate in place —
+  // a shipping lookup must never be able to hold up a sale.
+  const [live, setLive] = useState<
+    { etd: string | null; days: number | null; courier: string } | null
+  >(null);
+  const [pin, setPin] = useState("");
+
+  const shipWeight = Math.max(
+    0.5,
+    lines.reduce((sum, l) => sum + (l.weightKg || 0.3) * l.quantity, 0)
+  );
+
+  useEffect(() => {
+    if (!/^\d{6}$/.test(pin)) {
+      setLive(null);
+      return;
+    }
+    const ac = new AbortController();
+    const t = setTimeout(async () => {
+      try {
+        const res = await fetch(
+          `/api/delivery/estimate?pin=${pin}&weight=${shipWeight.toFixed(2)}`,
+          { signal: ac.signal }
+        );
+        const data = await res.json();
+        setLive(data.status === "ok" ? data : null);
+      } catch {
+        setLive(null); // keep the static estimate
+      }
+    }, 400); // let them finish typing
+    return () => {
+      ac.abort();
+      clearTimeout(t);
+    };
+  }, [pin, shipWeight]);
   const subtotal = cart?.subtotal ?? 0;
   const shipping = subtotal >= FREE_SHIPPING_FROM ? 0 : shippingFlat;
   const total = subtotal + shipping;
@@ -186,6 +219,12 @@ export function CheckoutForm({ shippingFlat }: { shippingFlat: number }) {
                 autoComplete="postal-code"
                 pattern="[0-9]{6}"
                 placeholder="400019"
+                inputMode="numeric"
+                maxLength={6}
+                value={pin}
+                onChange={(e) =>
+                  setPin(e.target.value.replace(/\D/g, "").slice(0, 6))
+                }
               />
               <label className="block">
                 <span className={labelClass}>Country</span>
@@ -260,13 +299,18 @@ export function CheckoutForm({ shippingFlat }: { shippingFlat: number }) {
                   {shipping === 0 ? "Complimentary" : formatINR(shipping)}
                 </dd>
               </div>
-              {eta && (
+              {(live?.etd || eta) && (
                 <div className="flex items-baseline justify-between gap-3">
                   <dt className="text-[color:var(--color-charcoal-soft)]">
                     Estimated delivery
                   </dt>
                   <dd className="text-right text-[color:var(--color-charcoal)]">
-                    {eta}
+                    {live?.etd ?? eta}
+                    {live?.courier && (
+                      <span className="mt-0.5 block text-[0.62rem] uppercase tracking-[0.18em] text-[color:var(--color-charcoal-soft)]">
+                        via {live.courier}
+                      </span>
+                    )}
                   </dd>
                 </div>
               )}

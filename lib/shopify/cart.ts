@@ -42,6 +42,21 @@ function localProduct(handle: string, title: string) {
   return undefined;
 }
 
+/** Shopify reports weight in whichever unit the variant was saved with. */
+function toKilograms(weight: number | null, unit: string | null): number {
+  if (!weight || weight <= 0) return 0;
+  switch (unit) {
+    case "GRAMS":
+      return weight / 1000;
+    case "POUNDS":
+      return weight * 0.453592;
+    case "OUNCES":
+      return weight * 0.0283495;
+    default:
+      return weight; // KILOGRAMS
+  }
+}
+
 /** A single line in the Shopify cart, flattened for the UI. */
 export interface CartLine {
   id: string;
@@ -55,6 +70,8 @@ export interface CartLine {
   price: number;
   currency: string;
   image: string | null;
+  /** Shipping weight in kilograms, used only for the delivery estimate. */
+  weightKg: number;
 }
 
 /** Normalised cart used across the app. */
@@ -82,6 +99,8 @@ const CART_FIELDS = `
           id
           title
           price { amount currencyCode }
+          weight
+          weightUnit
           image { url }
           product { title handle }
         }
@@ -105,6 +124,8 @@ interface RawCart {
           id: string;
           title: string;
           price: { amount: string; currencyCode: string };
+          weight: number | null;
+          weightUnit: string | null;
           image: { url: string } | null;
           product: { title: string; handle: string };
         };
@@ -146,6 +167,7 @@ function normalise(c: RawCart | null | undefined): Cart | null {
         )?.image ??
         node.merchandise.image?.url ??
         null,
+      weightKg: toKilograms(node.merchandise.weight, node.merchandise.weightUnit),
     })),
   };
 }
