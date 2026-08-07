@@ -6,6 +6,7 @@ import crypto from "node:crypto";
 import { NextResponse } from "next/server";
 import { payuConfigured } from "@/lib/payu/client";
 import { shopifyAdminConfigured } from "@/lib/shopify/admin";
+import { estimateForPin, getToken, shiprocketConfigured } from "@/lib/shiprocket/client";
 
 export const dynamic = "force-dynamic";
 
@@ -105,11 +106,24 @@ export async function GET() {
         ? `${process.env.PAYU_MERCHANT_KEY.slice(0, 3)}… (len ${process.env.PAYU_MERCHANT_KEY.length})`
         : null,
       adminApi,
-      shiprocket: {
-        email: Boolean(process.env.SHIPROCKET_EMAIL),
-        password: Boolean(process.env.SHIPROCKET_PASSWORD),
-        pickupPin: process.env.SHIPROCKET_PICKUP_PIN ?? null,
-      },
+      shiprocket: await (async () => {
+        const base = {
+          email: Boolean(process.env.SHIPROCKET_EMAIL),
+          password: Boolean(process.env.SHIPROCKET_PASSWORD),
+          pickupPin: process.env.SHIPROCKET_PICKUP_PIN ?? null,
+        };
+        if (!shiprocketConfigured()) return { ...base, auth: "not-configured" };
+        const token = await getToken();
+        if (!token) return { ...base, auth: "login-failed" };
+        // Two real PIN codes, no customer data, just to prove the call works.
+        const sample = await estimateForPin("110001", 0.5);
+        return {
+          ...base,
+          auth: "ok",
+          sampleQuery: "400019 -> 110001, 0.5kg",
+          sample: sample ?? "no-couriers-or-error",
+        };
+      })(),
       payuSaltFingerprint: process.env.PAYU_MERCHANT_SALT
         ? crypto
             .createHash("sha256")
