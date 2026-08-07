@@ -51,6 +51,18 @@ const slides: Slide[] = [
     alt: "The Quint clock diffuser glowing 08:00 on a wooden sideboard",
     position: "center 55%",
   },
+  {
+    type: "image",
+    src: "/images/hero-sideboard.webp",
+    alt: "The Quint range arranged along a walnut sideboard in a sunlit room",
+    position: "center 55%",
+  },
+  {
+    type: "image",
+    src: "/images/hero-oils-collection.webp",
+    alt: "The Quint fragrance oils — Shoreline, First Rain, Grand Lobby, Blanc Ritual, Soft Hour and Terrain — on wooden plinths",
+    position: "center",
+  },
   // Phone-only slides – appended after the shared slides above.
   {
     type: "image",
