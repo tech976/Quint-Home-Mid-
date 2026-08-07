@@ -28,15 +28,8 @@ type Slide =
   | { type: "video"; src: string; hideHeader?: boolean; desktopOnly?: boolean };
 
 const slides: Slide[] = [
-  // Phones open on the Peace poster; desktop skips it and leads with the
-  // diffuser cutaway, the only video in the rotation.
-  {
-    type: "image",
-    src: "/images/hero-peace-mobile.webp",
-    alt: "Peace is the new luxury — the Quint Peace scent",
-    position: "center",
-    mobileOnly: true,
-  },
+  // Both views open on the diffuser cutaway, then the couple; everything else
+  // follows. The Peace poster is portrait, so it runs on phones only.
   { type: "video", src: "/videos/hero-3.mp4" },
   {
     type: "image",
@@ -44,6 +37,13 @@ const slides: Slide[] = [
     srcMobile: "/images/hero-lounge-mobile.webp",
     alt: "A couple relaxing on a sunlit sofa with a Quint tower diffuser on the table",
     position: "center 50%",
+  },
+  {
+    type: "image",
+    src: "/images/hero-peace-v2.webp",
+    alt: "Peace is the new luxury — the Quint Peace scent",
+    position: "center",
+    mobileOnly: true,
   },
   {
     type: "image",
