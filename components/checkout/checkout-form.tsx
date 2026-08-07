@@ -1,11 +1,13 @@
 "use client";
 
 import Link from "next/link";
+import { useEffect, useState } from "react";
 import { useCart } from "@/components/cart/cart-provider";
 import { formatINR } from "@/lib/utils";
 import { FadeUp } from "@/components/motion/fade-up";
 import { Monogram } from "@/components/brand/logo";
 import { FREE_SHIPPING_FROM } from "@/lib/checkout-config";
+import { deliveryEstimate } from "@/lib/delivery";
 
 const inputClass =
   "w-[100%] border-b border-[color:var(--color-rule)] bg-transparent py-2.5 text-[0.95rem] outline-none transition-colors placeholder:text-[color:var(--color-charcoal-soft)]/60 focus:border-[color:var(--color-charcoal)]";
@@ -53,6 +55,10 @@ function Field({
 
 export function CheckoutForm({ shippingFlat }: { shippingFlat: number }) {
   const { cart } = useCart();
+  // Worked out on the customer's own clock after mount, so the date always
+  // agrees with their device and the server never renders a stale one.
+  const [eta, setEta] = useState<string | null>(null);
+  useEffect(() => setEta(deliveryEstimate()), []);
   const lines = cart?.lines ?? [];
   const subtotal = cart?.subtotal ?? 0;
   const shipping = subtotal >= FREE_SHIPPING_FROM ? 0 : shippingFlat;
@@ -254,6 +260,16 @@ export function CheckoutForm({ shippingFlat }: { shippingFlat: number }) {
                   {shipping === 0 ? "Complimentary" : formatINR(shipping)}
                 </dd>
               </div>
+              {eta && (
+                <div className="flex items-baseline justify-between gap-3">
+                  <dt className="text-[color:var(--color-charcoal-soft)]">
+                    Estimated delivery
+                  </dt>
+                  <dd className="text-right text-[color:var(--color-charcoal)]">
+                    {eta}
+                  </dd>
+                </div>
+              )}
             </dl>
 
             <div className="mt-5 flex items-baseline justify-between border-t border-[color:var(--color-rule)] pt-5">
