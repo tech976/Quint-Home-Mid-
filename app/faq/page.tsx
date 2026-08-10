@@ -15,7 +15,7 @@ const groups = [
     items: [
       {
         q: "How is this different from a regular diffuser?",
-        a: "Most home diffusers vibrate a tank of water and release a faint, diluted mist of about 1 to 3 percent fragrance plus humidified air. Quint Home diffuses the oil directly, with no water and no heat, at 70 to 90 percent concentration. The scent is much stronger, lasts longer, and holds the full structure of top, heart, and base notes.",
+        a: "Unlike traditional water-based diffusers that mix fragrance with water and create a visible mist, Quint Home uses waterless cold-air diffusion technology to disperse fragrance as an ultra-fine dry mist – without heat or water.\n\nBut the difference goes beyond the technology. Quint Home is a complete scenting experience. We carefully curate our fragrances, develop scent profiles specifically for modern interiors, and pair them with a controlled diffusion system designed for consistent, elegant fragrance distribution.\n\nThere is no water, no dilution, no wet residue and no open flame – just a refined, dry fragrance experience designed to make your space feel beautifully scented.\n\nThink of it less as a traditional diffuser and more as a fragrance system for your home.",
       },
       {
         q: "Is it actually silent?",
