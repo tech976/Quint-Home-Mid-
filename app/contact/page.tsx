@@ -82,7 +82,7 @@ export default function ContactPage() {
 
             <FadeUp className="contents">
               <a
-                href="https://wa.me/919819345550"
+                href="https://wa.me/919819616668"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group flex flex-col justify-between gap-12 bg-[color:var(--color-white)] p-8 transition-colors duration-500 hover:bg-[color:var(--color-stardust-soft)] md:min-h-[360px]"

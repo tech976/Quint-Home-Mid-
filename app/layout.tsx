@@ -58,6 +58,7 @@ export default function RootLayout({
                   url: "https://www.quinthome.in",
                   logo: "https://www.quinthome.in/icon.png",
                   email: "hello@quinthome.in",
+                  telephone: "+91 98196 16668",
                   description:
                     "Hotel-grade home fragrance from Mumbai. Waterless electronic diffusers and IFRA-compliant fragrance oils.",
                   sameAs: ["https://www.instagram.com/shopquinthome/"],

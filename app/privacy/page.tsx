@@ -263,7 +263,7 @@ export default function PrivacyPage() {
                 >
                   hello@ruseralifestyle.com
                 </a>{" "}
-                &middot; +91 98193 45550
+                &middot; +91 98196 16668
               </address>
             </FadeUp>
           </div>

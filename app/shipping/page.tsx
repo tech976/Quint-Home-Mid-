@@ -215,7 +215,7 @@ export default function ShippingPage() {
                 >
                   hello@ruseralifestyle.com
                 </a>{" "}
-                &middot; +91 98193 45550
+                &middot; +91 98196 16668
               </address>
               <p className="mt-6 text-[0.78rem] leading-[1.7] text-[color:var(--color-stardust)]/70">
                 See also our{" "}

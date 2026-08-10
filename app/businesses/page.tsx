@@ -254,7 +254,13 @@ export default function BusinessesPage() {
 
               <div className="md:col-span-2 mt-2 flex flex-wrap items-center justify-between gap-4">
                 <p className="text-[0.62rem] uppercase tracking-[0.32em] text-[color:var(--color-stardust)]/55">
-                  Or write directly: business@quinthome.in
+                  Or write directly:{" "}
+                  <a
+                    href="mailto:hello@quinthome.in"
+                    className="underline-offset-4 hover:text-[color:var(--color-aerial-soft)] hover:underline"
+                  >
+                    hello@quinthome.in
+                  </a>
                 </p>
                 <button
                   type="button"
