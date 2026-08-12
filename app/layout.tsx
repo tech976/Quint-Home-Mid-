@@ -14,7 +14,7 @@ import { shopifyAdminConfigured } from "@/lib/shopify/admin";
 
 export const metadata: Metadata = {
   title: {
-    default: "Quint Home – Air Elevated",
+    default: "Quint Home",
     template: "%s · Quint Home",
   },
   description:
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/" },
   openGraph: {
     type: "website",
-    title: "Quint Home – Air Elevated",
+    title: "Quint Home",
     description:
       "Hotel-grade home fragrance from Mumbai. Designed for the considered Indian home.",
     siteName: "Quint Home",
