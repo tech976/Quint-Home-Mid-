@@ -11,7 +11,7 @@ const cols = [
     ],
   },
   {
-    heading: "House",
+    heading: "Company",
     links: [
       { href: "/about", label: "About" },
       { href: "/journal", label: "Journal" },
@@ -20,7 +20,7 @@ const cols = [
     ],
   },
   {
-    heading: "Considered",
+    heading: "Customer Care",
     links: [
       { href: "/faq", label: "FAQ" },
       { href: "/shipping", label: "Shipping & Returns" },
