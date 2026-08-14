@@ -105,9 +105,9 @@ const diffusersByDefinition: Diffuser[] = [
       "Leak-proof design for safe placement anywhere",
       "Bluetooth connectivity – control from your phone via the companion app",
     ],
-    image: "/images/diffusers/a326-gold/gold-v2-01.webp",
+    image: "/images/diffusers/a326-gold/gold-v3-01.webp",
     gallery: [
-      "/images/diffusers/a326-gold/gold-v2-01.webp",
+      "/images/diffusers/a326-gold/gold-v3-01.webp",
       "/images/diffusers/a326-gold/gold-v2-02.webp",
       "/images/diffusers/a326-gold/gold-v2-03.webp",
       "/images/diffusers/a326-gold/gold-v2-04.webp",
@@ -119,9 +119,9 @@ const diffusersByDefinition: Diffuser[] = [
         name: "Gold",
         swatch: "#B5946A",
         finish: "Brushed gold aluminum column",
-        image: "/images/diffusers/a326-gold/gold-v2-01.webp",
+        image: "/images/diffusers/a326-gold/gold-v3-01.webp",
         gallery: [
-          "/images/diffusers/a326-gold/gold-v2-01.webp",
+          "/images/diffusers/a326-gold/gold-v3-01.webp",
           "/images/diffusers/a326-gold/gold-v2-02.webp",
           "/images/diffusers/a326-gold/gold-v2-03.webp",
           "/images/diffusers/a326-gold/gold-v2-04.webp",
