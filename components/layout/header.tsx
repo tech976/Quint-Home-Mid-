@@ -28,10 +28,7 @@ export function Header() {
   const overlay = pathname === "/";
 
   const [hidden, setHidden] = useState(false);
-  const [hovered, setHovered] = useState(false);
   const [pastHero, setPastHero] = useState(false);
-  // True only while the header still sits inside the hero's dark top gradient.
-  const [atTop, setAtTop] = useState(true);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [slideHidden, setSlideHidden] = useState(false);
   const { count, setOpen: setCartOpen } = useCart();
@@ -41,12 +38,14 @@ export function Header() {
   const accum = useRef(0);
   const headerRef = useRef<HTMLElement>(null);
 
-  // On the homepage the header is transparent white text merged into the banner —
-  // but only while it sits inside the hero's dark top gradient. That gradient is
-  // what makes white text readable, and it only covers the first ~192px. Once the
-  // page is scrolled the header floats over bare artwork, some of which is bright
-  // (the sunlit lounge shot), so it takes the solid panel instead.
-  const transparent = overlay && atTop && !pastHero && !hovered && !mobileOpen;
+  // On the homepage the header merges into the hero for as long as the hero is
+  // on screen, and takes the solid panel only once it has scrolled past. It
+  // used to also require being within 8px of the top, which meant the white bar
+  // appeared a few pixels into a hero nearly 950px tall — the header stopped
+  // merging with artwork the viewer was still looking at. Readability over a
+  // bright slide is handled by the scrim below, not by giving up and going
+  // solid, so neither scroll position nor hover forces the panel any more.
+  const transparent = overlay && !pastHero && !mobileOpen;
 
   useEffect(() => {
     function onScroll() {
@@ -68,8 +67,6 @@ export function Header() {
       // smooth-scroll's tiny per-frame steps still trigger a reliable reveal.
       const delta = y - lastY.current;
       lastY.current = y;
-
-      setAtTop(y <= 8);
 
       if (y <= 8) {
         setHidden(false);
@@ -123,8 +120,9 @@ export function Header() {
     <>
       <header
         ref={headerRef}
-        onMouseEnter={() => setHovered(true)}
-        onMouseLeave={() => setHovered(false)}
+        data-debug-path={pathname}
+        data-debug-overlay={String(overlay)}
+        data-debug-past={String(pastHero)}
         className={cn(
           "sticky top-0 z-40 will-change-transform",
           transparent
