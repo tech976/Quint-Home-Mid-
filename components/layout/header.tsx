@@ -120,9 +120,6 @@ export function Header() {
     <>
       <header
         ref={headerRef}
-        data-debug-path={pathname}
-        data-debug-overlay={String(overlay)}
-        data-debug-past={String(pastHero)}
         className={cn(
           "sticky top-0 z-40 will-change-transform",
           transparent
