@@ -122,6 +122,7 @@ export async function POST(request: NextRequest) {
         merchandiseId: l.merchandiseId,
         quantity: l.quantity,
         attributes: l.attributes,
+        weightGrams: Math.round((l.weightKg ?? 0) * 1000),
       })),
       customer: pending.customer,
       amountPaid: paid,

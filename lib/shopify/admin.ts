@@ -26,6 +26,8 @@ export interface OrderLine {
   quantity: number;
   /** Buyer choices, e.g. the included oil — recorded on the order line. */
   attributes?: { key: string; value: string }[];
+  /** Shipping weight per unit, in grams, from the Shopify variant. */
+  weightGrams?: number;
 }
 
 export interface OrderCustomer {
@@ -79,14 +81,26 @@ export async function createPaidOrder(
       quantity: l.quantity,
       // Shopify shows these as line-item properties on the order.
       properties: (l.attributes ?? []).map((a) => ({ name: a.key, value: a.value })),
+      // Carried explicitly rather than left to Shopify: orders created through
+      // the API do not get an order-level weight the way checkout orders do,
+      // and a courier reading zero grams either refuses the shipment or bills
+      // against the wrong slab.
+      ...(l.weightGrams ? { grams: l.weightGrams } : {}),
     }))
     .filter(
       (l): l is {
         variant_id: number;
         quantity: number;
         properties: { name: string; value: string }[];
+        grams?: number;
       } => l.variant_id !== null
     );
+
+  // Sum of the parcel, for the same reason.
+  const total_weight = input.lines.reduce(
+    (g, l) => g + (l.weightGrams ?? 0) * l.quantity,
+    0
+  );
 
   if (line_items.length === 0) {
     throw new Error("Cannot create a Shopify order with no resolvable line items.");
@@ -107,6 +121,7 @@ export async function createPaidOrder(
 
   const order: Record<string, unknown> = {
     line_items,
+    ...(total_weight > 0 ? { total_weight } : {}),
     email: c.email,
     phone: c.phone,
     customer: {
