@@ -47,14 +47,14 @@ const FACTS: Record<string, Fact> = {
     control: "App + touch panel",
     clock: "—",
     light: "Ambient base light",
-    material: "Aluminium alloy",
+    material: "PP + PET + Aluminium alloy",
   },
   A815: {
     power: "Plug-in — wall socket",
     control: "No app — 24h cyclic timer",
     clock: "—",
     light: "—",
-    material: "PP + glass",
+    material: "PP + Glass bottle",
   },
 };
 
