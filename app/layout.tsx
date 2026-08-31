@@ -7,6 +7,7 @@ import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { Grain } from "@/components/atmosphere/grain";
 import { ImageGuard } from "@/components/atmosphere/image-guard";
+import { WhatsAppButton } from "@/components/layout/whatsapp-button";
 import { CartProvider } from "@/components/cart/cart-provider";
 import { CartDrawer } from "@/components/cart/cart-drawer";
 import { payuConfigured } from "@/lib/payu/client";
@@ -88,6 +89,7 @@ export default function RootLayout({
           <main className="flex-1">{children}</main>
           <Footer />
           <CartDrawer />
+          <WhatsAppButton />
         </CartProvider>
       </body>
     </html>
