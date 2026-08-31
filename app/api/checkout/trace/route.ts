@@ -11,7 +11,7 @@ import { getToken, shiprocketConfigured } from "@/lib/shiprocket/client";
 
 export const dynamic = "force-dynamic";
 
-const WANTED = ["1005", "1006", "105", "106"];
+const WANTED = ["1005", "1006", "1007", "1008"];
 const matches = (label: string) =>
   WANTED.some((w) => label.replace(/^#/, "") === w);
 
