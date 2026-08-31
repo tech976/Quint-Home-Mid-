@@ -18,6 +18,39 @@ const GRAMS = 135;
 
 export const dynamic = "force-dynamic";
 
+/** Lists any probe orders left behind and removes them. */
+export async function GET() {
+  const domain = process.env.SHOPIFY_STORE_DOMAIN;
+  const token = process.env.SHOPIFY_ADMIN_TOKEN;
+  const version = process.env.SHOPIFY_API_VERSION || "2024-10";
+  if (!domain || !token) {
+    return NextResponse.json({ error: "Admin API not configured" }, { status: 503 });
+  }
+  const h = { "Content-Type": "application/json", "X-Shopify-Access-Token": token };
+  const res = await fetch(
+    `https://${domain}/admin/api/${version}/orders.json?status=any&limit=50&fields=id,name,tags,created_at`,
+    { headers: h, cache: "no-store" }
+  );
+  if (!res.ok) return NextResponse.json({ error: `Shopify ${res.status}` }, { status: 502 });
+  const { orders } = (await res.json()) as {
+    orders: { id: number; name: string; tags: string; created_at: string }[];
+  };
+  const strays = orders.filter((o) => (o.tags || "").includes("AUTOMATED-WEIGHT-PROBE"));
+  const removed: string[] = [];
+  for (const o of strays) {
+    const d = await fetch(`https://${domain}/admin/api/${version}/orders/${o.id}.json`, {
+      method: "DELETE", headers: h, cache: "no-store",
+    });
+    removed.push(`${o.name}:${d.ok ? "deleted" : "FAILED " + d.status}`);
+  }
+  return NextResponse.json({
+    liveOrderCount: orders.length,
+    strayProbeOrders: strays.length,
+    removed,
+    clean: strays.length === 0,
+  });
+}
+
 export async function POST() {
   const domain = process.env.SHOPIFY_STORE_DOMAIN;
   const token = process.env.SHOPIFY_ADMIN_TOKEN;
